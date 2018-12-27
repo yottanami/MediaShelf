@@ -22,8 +22,7 @@ const CategoryListQuery = gql`
 export default () => (
   <Query query={CategoryListQuery}>
     {({ loading, error, data }) => {
-      //if (loading) return <ActivityIndicator color={colors.teal} />;
-
+      if (loading) return <ActivityIndicator color={colors.teal} />;
       if (error) return <Text>OH OH {`Error: ${error}`}</Text>;
 
       return (
