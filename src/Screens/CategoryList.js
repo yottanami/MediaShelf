@@ -10,7 +10,7 @@ import {
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-import { fontSize, colors } from "./styles/styles";
+import { colors, fontSize } from "../Styles/styles";
 
 const CategoryListQuery = gql`
 {
