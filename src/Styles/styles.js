@@ -1,3 +1,5 @@
+import {StyleSheet} from "react-native";
+
 export const colors = {
   darkBlue: "#2E3B4B",
   white: "#f0f2f5",
@@ -10,3 +12,15 @@ export const fontSize = {
   medium: "4em",
   small: "2em"
 };
+
+export const styles = StyleSheet.create({
+  card: {
+    margin: 30,
+  },
+  title: {
+    color: colors.teal,
+    fontSize: 20,
+    padding: 30,
+    textAlign: 'center'
+  }
+});

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import CategoryList from "./CategoryList.js";
-
+import { styles } from "../Styles/styles";
 
 export default class Category extends Component {
 
@@ -9,7 +9,7 @@ export default class Category extends Component {
 
     return (
       <View>
-        <Text>Categories</Text>
+        <Text style={styles.title}>Categories</Text>
         <CategoryList
         />
       </View>

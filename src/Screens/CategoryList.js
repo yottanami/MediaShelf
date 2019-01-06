@@ -3,14 +3,14 @@ import {
   View,
   ActivityIndicator,
   StyleSheet,
-  Text,
-  Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from "react-native";
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-import { colors, fontSize } from "../Styles/styles";
+import { colors, fontSize, styles } from "../Styles/styles";
 
 const CategoryListQuery = gql`
 {
@@ -33,13 +33,18 @@ export default () => (
 
           {data.categories
            .map(({ title, image }, idx, rateArr) => (
-             <View key={title}>
-               <Text >{title}</Text>
-               <Image
-                 style={{ width: 50, height: 50 }}
-                 source={{uri: "http://172.16.6.146:3000"+image.thumb.url}} />
-              </View>
-            ))}
+             <Card style={styles.card} key={title}>
+               <CardItem cardBody>
+                 <Image
+                     style={{ width: 150, height: 150 }}
+                     source={{uri: "http://172.16.6.146:3000"+image.thumb.url}} />
+               </CardItem>
+               <CardItem >
+                   <Text >{title}</Text>
+               </CardItem>
+             </Card>
+           ))}
+
         </View>
       );
     }}
