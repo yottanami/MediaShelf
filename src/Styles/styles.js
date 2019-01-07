@@ -15,7 +15,7 @@ export const fontSize = {
 
 export const styles = StyleSheet.create({
   card: {
-    margin: 30,
+
   },
   title: {
     color: colors.teal,

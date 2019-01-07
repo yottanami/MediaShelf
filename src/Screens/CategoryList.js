@@ -23,6 +23,7 @@ image
 
 export default () => (
 
+
   <Query query={CategoryListQuery}>
     {({ loading, error, data }) => {
       if (loading) return <ActivityIndicator color={colors.teal} />;
@@ -30,6 +31,10 @@ export default () => (
 
       return (
         <View>
+                  <Button
+          title="Go to Details"
+          onPress={() => this.props.navigation.navigate('Post')}
+                  ><Text>Test</Text></Button>
 
           {data.categories
            .map(({ title, image }, idx, rateArr) => (
@@ -43,7 +48,9 @@ export default () => (
                    <Text >{title}</Text>
                </CardItem>
              </Card>
+
            ))}
+
 
         </View>
       );

@@ -3,7 +3,7 @@ import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Rig
 import Settings from '../Configs/settings';
 import SideBar from './Sidebar';
 
-
+import GraphqlProvider from './GraphqlProvider';
 
 export default class Layout extends Component {
 
@@ -12,7 +12,7 @@ export default class Layout extends Component {
   }
 
   closeDrawer = () => {
-      this.drawer._root.close()
+    this.drawer._root.close()
   };
 
   openDrawer = () => {
@@ -28,19 +28,11 @@ export default class Layout extends Component {
           content={<SideBar />}
           onClose={() => this.closeDrawer()} >
 
-          <Header>
-            <Left>
-              <Button transparent>
-                <Icon name='menu' />
-              </Button>
-            </Left>
-            <Body>
-              <Title>{Settings.appName}</Title>
-            </Body>
-            <Right />
-          </Header>
           <Content>
-            {this.props.children}
+            <GraphqlProvider>
+
+              {this.props.children}
+            </GraphqlProvider>
           </Content>
 
         </Drawer>

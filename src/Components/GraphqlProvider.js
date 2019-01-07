@@ -5,10 +5,10 @@ import { InMemoryCache} from 'apollo-cache-inmemory';
 
 import  ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+//import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
 import Settings from '../Configs/settings';
-import Reducers from '../Reducers';
+//import Reducers from '../Reducers';
 
 export default class AppoloProvider extends Component {
   constructor(props) {
@@ -24,10 +24,10 @@ export default class AppoloProvider extends Component {
       }
     );
 
-    const store = applyMiddleware()(createStore);
+    //const store = applyMiddleware()(createStore);
 
     return (
-      <ApolloProvider client={client} store={store(Reducers)}>
+      <ApolloProvider client={client}>
         <View>
           {this.props.children}
         </View>
