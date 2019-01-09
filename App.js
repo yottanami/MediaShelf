@@ -7,9 +7,15 @@ import Category from './src/Screens/Category';
 import Post from './src/Screens/Post';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import { SafeAreaView } from "react-navigation";
+import NavigationService from './NavigationService';
 
 
-const AppNavigator = createStackNavigator({
+
+
+
+class App extends Component {
+  render() {
+const MainNavigator = createStackNavigator({
   Home: Category,
   Post: Post,
 },
@@ -25,6 +31,46 @@ const AppNavigator = createStackNavigator({
                                               },
                                             }
                                           }
-                                         );
+                                          );
+     return (
+        <MainNavigator
+          ref={navigatorRef => {
+            NavigationService.setTopLevelNavigator(navigatorRef);
+          }}
+        />
+    );
+  }
+}
 
-export default createAppContainer(AppNavigator);
+
+
+
+
+
+
+
+
+
+
+
+
+
+//const AppNavigator = createStackNavigator({
+//  Home: Category,
+//  Post: Post,
+//},
+//                                          {
+//                                            initialRouteName: 'Home',
+//                                            defaultNavigationOptions: {
+//                                              headerStyle: {
+//                                                backgroundColor: '#f4511e',
+//                                              },
+//                                              headerTintColor: '#fff',
+//                                              headerTitleStyle: {
+//                                                fontWeight: 'bold',
+//                                              },
+//                                            }
+//                                          }
+//                                         );
+//
+//export default createAppContainer(AppNavigator);
