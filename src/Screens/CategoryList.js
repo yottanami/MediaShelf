@@ -11,6 +11,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 import { colors, fontSize, styles } from "../Styles/styles";
+import NavigationService from '../Configs/NavigationService';
 
 const CategoryListQuery = gql`
 {
@@ -33,7 +34,7 @@ export default () => (
         <View>
                   <Button
           title="Go to Details"
-          onPress={() => this.props.navigation.navigate('Post')}
+          onPress={() => NavigationService.navigate('Post')}
                   ><Text>Test</Text></Button>
 
           {data.categories

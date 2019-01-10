@@ -7,14 +7,10 @@ import Category from './src/Screens/Category';
 import Post from './src/Screens/Post';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import { SafeAreaView } from "react-navigation";
-import NavigationService from './NavigationService';
+import NavigationService from './src/Configs/NavigationService';
 
 
 
-
-
-class App extends Component {
-  render() {
 const MainNavigator = createStackNavigator({
   Home: Category,
   Post: Post,
@@ -32,8 +28,13 @@ const MainNavigator = createStackNavigator({
                                             }
                                           }
                                           );
+const AppContainer = createAppContainer(MainNavigator);
+
+export default class App extends Component {
+  render() {
+
      return (
-        <MainNavigator
+        <AppContainer
           ref={navigatorRef => {
             NavigationService.setTopLevelNavigator(navigatorRef);
           }}
@@ -73,4 +74,3 @@ const MainNavigator = createStackNavigator({
 //                                          }
 //                                         );
 //
-//export default createAppContainer(AppNavigator);
