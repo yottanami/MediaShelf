@@ -17,7 +17,8 @@ const CategoryListQuery = gql`
 {
   categories {
   	title,
-image
+image,
+id
 	}
 }
 `;
@@ -32,21 +33,20 @@ export default () => (
 
       return (
         <View>
-                  <Button
-          title="Go to Details"
-          onPress={() => NavigationService.navigate('Post')}
-                  ><Text>Test</Text></Button>
 
           {data.categories
-           .map(({ title, image }, idx, rateArr) => (
+           .map(({ title, image, id }, idx, rateArr) => (
              <Card style={styles.card} key={title}>
                <CardItem cardBody>
                  <Image
                      style={{ width: 150, height: 150 }}
-                     source={{uri: "http://172.16.6.146:3000"+image.thumb.url}} />
+                     source={{uri: "http://172.16.6.146:3000"+image.thumb.url}} 
+                     onPress={() => NavigationService.navigate('Post', {categoryId: id})}
+                     />
                </CardItem>
                <CardItem >
-                   <Text >{title}</Text>
+                   <Text 
+                   onPress={() => NavigationService.navigate('Post', {categoryId: id})}>{title}</Text>
                </CardItem>
              </Card>
 
