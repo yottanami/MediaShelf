@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import Layout from '../Components/Layout';
 import NavigationService from '../Configs/NavigationService';
+import VideoPlayer from 'react-native-video-controls';
 
 
 import { Query } from "react-apollo";
@@ -39,11 +40,15 @@ constructor(props) {
 
           {data.posts
            .map(({ title, image, video }, idx, rateArr) => (
+             <View>
                   <Text style={styles.title}>{title}</Text>
                   <VideoPlayer
-                    source={{ uri: "http://172.16.6.146:3000"+image.thumb.url }}
-                    navigator={ this.props.navigator }
-                  />
+                  //source={{ uri: "http://172.16.6.146:3000"+video.url }}
+                  source={{ uri: "http://techslides.com/demos/sample-videos/small.mp4"}}
+                  navigator={ this.props.navigator}
+                  toggleResizeModeOnFullscreen= {false}
+                />
+                </View>
            ))}
 
         </View>
