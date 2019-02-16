@@ -38,8 +38,12 @@ constructor(props) {
         <View>
 
           {data.posts
-           .map(({ title, image }, idx, rateArr) => (
-                   <Text >{title}</Text>
+           .map(({ title, image, video }, idx, rateArr) => (
+                  <Text style={styles.title}>{title}</Text>
+                  <VideoPlayer
+                    source={{ uri: "http://172.16.6.146:3000"+image.thumb.url }}
+                    navigator={ this.props.navigator }
+                  />
            ))}
 
         </View>
