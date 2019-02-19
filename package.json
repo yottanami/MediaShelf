@@ -21,7 +21,6 @@
     "react-native-cli": "^2.0.1",
     "react-native-gesture-handler": "^1.0.15",
     "react-native-video": "^4.3.1",
-    "react-native-video-controls": "^2.2.3",
     "react-navigation": "^3.1.2"
   },
   "devDependencies": {
