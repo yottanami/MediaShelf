@@ -9,7 +9,7 @@ import gql from "graphql-tag";
 
 import { colors, fontSize, styles } from "../Styles/styles";
 import Video from 'react-native-af-video-player';
-
+import Setting from '../Configs/settings';
 
 const PostQuery = gql`
 query Posts($categoryId: ID!) {
@@ -41,16 +41,17 @@ export default class Post extends Component {
 
                 {data.posts
                  .map(({ title, image, video }, idx, rateArr) => (
-
+                   <View>
+                     <Text>{Setting.serverMainPath}{video.url}</Text>
                    <Video
                      key={title}
-                     url={''}
-                     logo={''}
-                     placeholer={''}
+                     url={Setting.serverMainPath + video.url}
+                     placeholder={Setting.serverMainPath + image.url}
+                     logo={Setting.serverMainPath + image.url}
                      title={title}
                      rotateToFullScreen
                    />
-
+</View>
                  ))}
 
               </View>
