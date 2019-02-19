@@ -17,6 +17,11 @@ export const styles = StyleSheet.create({
   card: {
 
   },
+  videoBox: {
+
+    flex: 1,
+    justifyContent: 'center'
+  },
   title: {
     color: colors.teal,
     fontSize: 20,

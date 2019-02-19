@@ -23,10 +23,7 @@ export default class Layout extends Component {
 
     return (
       <Container>
-        <Drawer
-          ref={(ref) => { this.drawer = ref; }}
-          content={<SideBar />}
-          onClose={() => this.closeDrawer()} >
+
 
           <Content>
             <GraphqlProvider>
@@ -35,7 +32,6 @@ export default class Layout extends Component {
             </GraphqlProvider>
           </Content>
 
-        </Drawer>
       </Container>
     );
   }
