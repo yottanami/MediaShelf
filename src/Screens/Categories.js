@@ -9,7 +9,7 @@ import {
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-
+import Setting from "../Configs/settings";
 import { colors, fontSize, styles } from "../Styles/styles";
 import NavigationService from '../Configs/NavigationService';
 import Layout from '../Components/Layout';
@@ -41,8 +41,8 @@ export default () => (
                <Card style={styles.card} key={title}>
                  <CardItem cardBody>
                    <Image
-                     style={{ width: 150, height: 150 }}
-                     source={{uri: "http://172.16.6.146:3000"+image.thumb.url}}
+                     style={{ width: 600, height: 150 }}
+                     source={{uri: Setting.serverMainPath +image.thumb.url}}
                      onPress={() => NavigationService.navigate('Post', {categoryId: id})}
                    />
                  </CardItem>
