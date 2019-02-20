@@ -3,7 +3,7 @@ import {Text, View, Container, Content} from 'native-base';
 import  HttpLink from 'apollo-boost';
 
 
-import Category from './src/Screens/Category';
+import CategoryList from './src/Screens/CategoryList';
 import Post from './src/Screens/Post';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import { SafeAreaView } from "react-navigation";
@@ -12,7 +12,7 @@ import NavigationService from './src/Configs/NavigationService';
 
 
 const MainNavigator = createStackNavigator({
-  Home: Category,
+  Home: CategoryList,
   Post: Post,
 },
                                           {

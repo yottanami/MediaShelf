@@ -12,6 +12,7 @@ import gql from "graphql-tag";
 
 import { colors, fontSize, styles } from "../Styles/styles";
 import NavigationService from '../Configs/NavigationService';
+import Layout from '../Components/Layout';
 
 const CategoryListQuery = gql`
 {
@@ -25,36 +26,38 @@ id
 
 export default () => (
 
+  <Layout>
+    <Text style={styles.title}>Categories</Text>
+    <Query query={CategoryListQuery}>
+      {({ loading, error, data }) => {
+        if (loading) return <ActivityIndicator color={colors.teal} />;
+        if (error) return <Text>OH OH {`Error: ${error}`}</Text>;
 
-  <Query query={CategoryListQuery}>
-    {({ loading, error, data }) => {
-      if (loading) return <ActivityIndicator color={colors.teal} />;
-      if (error) return <Text>OH OH {`Error: ${error}`}</Text>;
+        return (
+          <View>
 
-      return (
-        <View>
-
-          {data.categories
-           .map(({ title, image, id }, idx, rateArr) => (
-             <Card style={styles.card} key={title}>
-               <CardItem cardBody>
-                 <Image
+            {data.categories
+             .map(({ title, image, id }, idx, rateArr) => (
+               <Card style={styles.card} key={title}>
+                 <CardItem cardBody>
+                   <Image
                      style={{ width: 150, height: 150 }}
                      source={{uri: "http://172.16.6.146:3000"+image.thumb.url}}
                      onPress={() => NavigationService.navigate('Post', {categoryId: id})}
-                     />
-               </CardItem>
-               <CardItem >
+                   />
+                 </CardItem>
+                 <CardItem >
                    <Text
-                   onPress={() => NavigationService.navigate('Post', {categoryId: id})}>{title}</Text>
-               </CardItem>
-             </Card>
+                     onPress={() => NavigationService.navigate('Post', {categoryId: id})}>{title}</Text>
+                 </CardItem>
+               </Card>
 
-           ))}
+             ))}
 
 
-        </View>
-      );
-    }}
-  </Query>
+          </View>
+        );
+      }}
+    </Query>
+  </Layout>
 );
