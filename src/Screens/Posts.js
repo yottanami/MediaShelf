@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import { View, Text, Image, StyleSheet, ActivityIndicator, TouchableOpacity} from "react-native";
 import Layout from '../Components/Layout';
 import VideoPlayer from '../Components/Layout';
 import NavigationService from '../Configs/NavigationService';
-
+import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right, H3 } from 'native-base';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -14,10 +14,10 @@ import Setting from '../Configs/settings';
 const PostQuery = gql`
 query Posts($categoryId: ID!) {
   posts(categoryId: $categoryId) {
+    id,
     title,
     body,
-    image,
-    video
+    image
 	}
 }
 `;
@@ -37,21 +37,27 @@ export default class Post extends Component {
             if (error) return <Text>OH OH :{`Error: ${error}`}</Text>;
 
             return (
-              <View style={styles.videoBox}>
+              <View>
 
                 {data.posts
-                 .map(({ title, image, video }, idx, rateArr) => (
-                   <View>
-                     <Text>{Setting.serverMainPath}{video.url}</Text>
-                   <Video
+                 .map(({ id, title, image }, idx, rateArr) => (
+                   <TouchableOpacity
                      key={title}
-                     url={Setting.serverMainPath + video.url}
-                     placeholder={Setting.serverMainPath + image.url}
-                     logo={Setting.serverMainPath + image.url}
-                     title={title}
-                     rotateToFullScreen
-                   />
-</View>
+                     onPress={() => NavigationService.navigate('Post', {id: id})} >
+                     <Card style={styles.card}>
+                       <CardItem >
+                         <H3>{title}</H3>
+                       </CardItem>
+                       <CardItem cardBody>
+                         <Image
+                           style={{ width: 400, height: 250 }}
+                           source={{uri: Setting.serverMainPath +image.thumb.url}}
+
+                         />
+                       </CardItem>
+
+                     </Card>
+                   </TouchableOpacity>
                  ))}
 
               </View>

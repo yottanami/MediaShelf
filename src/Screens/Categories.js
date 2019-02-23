@@ -43,12 +43,12 @@ export default () => (
                    <Image
                      style={{ width: 600, height: 150 }}
                      source={{uri: Setting.serverMainPath +image.thumb.url}}
-                     onPress={() => NavigationService.navigate('Post', {categoryId: id})}
+                     onPress={() => NavigationService.navigate('Posts', {categoryId: id})}
                    />
                  </CardItem>
                  <CardItem >
                    <Text
-                     onPress={() => NavigationService.navigate('Post', {categoryId: id})}>{title}</Text>
+                     onPress={() => NavigationService.navigate('Posts', {categoryId: id})}>{title}</Text>
                  </CardItem>
                </Card>
 
