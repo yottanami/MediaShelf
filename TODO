@@ -1,1 +1,3 @@
 * Check this packages are usefull. appolo-boost, apollo-cache-inmemory, apolli-link-http
+* Remove unusefull imports
+* add yvm for yarn 1.12.3
