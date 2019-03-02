@@ -21,6 +21,7 @@ export default class Generate extends Component {
     this.state = { mobile: '09---------' };
     this.handleGenerate = this.handleGenerate.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleError = this.handleError.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
   }
 
@@ -67,17 +68,23 @@ export default class Generate extends Component {
   }
   handleGenerate() {
     Keyboard.dismiss();
-    let mobile = this.state.mobile.substring(1);
-    GenerateAPI(mobile, this.handleLogin, this.handleError);
+    this.state.mobile = this.state.mobile.substring(1);
+    GenerateAPI(this.state.mobile, this.handleLogin, this.handleError);
   }
   handleLogin(){
-    NavigationService.navigation.navigate('Login', {mobile: this.state.mobile});
+    NavigationService.navigate('Login', {mobile: this.state.mobile});
   }
-  generateCallback(result){
-    console.log(result);
-  }
+
   handleError(result){
-    alert(result);
+    switch(result){
+    case 'FAILED':
+      alert('مشکلی در حین ارسال پیامک پیش آمد لطفا دقایقی دیگر مجدد تلاش بفرمایید');
+    case 'SENT BEFORE':
+      alert('دقایقی پیش پیامک برای شما ارسال شده است جهت ارسال مجدد چند دقیقه دیگر امتحان کنید');
+      NavigationService.navigate('Login', {mobile: this.state.mobile});
+    default:
+      alert(result);
+    }
   }
 
 }

@@ -8,7 +8,7 @@ import {
   TextInput,
   Keyboard
 } from "react-native";
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+import { Container, Header, Text, Button, Icon, Left, Body, Right } from 'native-base';
 
 import Setting from "../Configs/settings";
 import { colors, fontSize, styles } from "../Styles/styles";
@@ -18,7 +18,11 @@ import {LoginAPI} from '../Configs/ApiCalls';
 export default class Login extends Component {
   constructor(props) {
     super(props);
+    this.state = { otp: '----' };
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleError = this.handleError.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleLocalLogin = this.handleLocalLogin.bind(this);
   }
 
   render(){
@@ -31,6 +35,7 @@ export default class Login extends Component {
         <TextInput
           keyboardType="numeric"
           onChangeText={(otp) => this.handleInputChange(otp)}
+          onFocus={this.handleFocus}
           value={this.state.otp}
           maxLength = {5}
         />
@@ -41,7 +46,6 @@ export default class Login extends Component {
             ارسال
           </Text>
         </Button>
-
       </View>
     );
   }
@@ -53,16 +57,24 @@ export default class Login extends Component {
       this.setState({otp: otp});
     }
     else {
-      this.setState({otp: "09"});
+      this.setState({otp: ""});
     }
   }
+
   handleLogin() {
+
     Keyboard.dismiss();
-    LoginAPI(this.state.otp, this.handleLogin, this.handleError);
+    LoginAPI(this.props.navigation.getParam('mobile'), this.state.otp, this.handleLocalLogin, this.handleError);
   }
-  handleLogin(){
-    //NavigationService.navigation.navigate('Login');
+
+  handleLocalLogin(){
+    NavigationService.navigate('Categories');
   }
+
+  handleFocus(){
+    this.setState({otp: ''});
+  }
+
   handleError(result){
     alert(result);
   }

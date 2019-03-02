@@ -16,7 +16,7 @@ import NavigationService from './src/Configs/NavigationService';
 
 const MainNavigator = createStackNavigator({
   Home: Generate,
-  Home: Login,
+  Login: Login,
   Categories: Categories,
   Posts: Posts,
   Post: Post,
