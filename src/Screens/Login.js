@@ -23,7 +23,7 @@ export default class Login extends Component {
     this.handleError = this.handleError.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
     this.handleLocalLogin = this.handleLocalLogin.bind(this);
-  }
+ }
 
   render(){
     return (
@@ -61,8 +61,7 @@ export default class Login extends Component {
     }
   }
 
-  handleLogin() {
-
+  handleLogin(){
     Keyboard.dismiss();
     LoginAPI(this.props.navigation.getParam('mobile'), this.state.otp, this.handleLocalLogin, this.handleError);
   }
