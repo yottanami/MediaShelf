@@ -66,7 +66,7 @@ export default class AppoloProvider extends Component {
 
   getToken = async () => {
   try {
-    const value = await AsyncStorage.getItem('TASKS');
+    const value = await AsyncStorage.getItem('token');
     if (value !== null) {
       return value;
     }

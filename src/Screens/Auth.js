@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Image, StyleSheet, ActivityIndicator, TouchableOpacity, AsyncStorage} from "react-native";
+import { View, Text, Image, StyleSheet,StatusBar ,ActivityIndicator, TouchableOpacity, AsyncStorage} from "react-native";
 import Layout from '../Components/Layout';
 import NavigationService from '../Configs/NavigationService';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Button, Icon, Left, Body, Right, H3 } from 'native-base';
@@ -17,45 +17,61 @@ mutation singIn($email: String!, $password: String! ) {
 }
 `;
 
-export default class Auth extends Component {
+
+
+class CallAuth extends Component {
+
   constructor(props){
     super(props);
-    this.onComplete = this.onComplete.bind(this);
-    this.onError = this.onError.bind(this);
+  }
+
+  componentDidMount(){
+    this.props.mutation();
   }
 
   render(){
-    return (
-      <Layout>
-        <Mutation
-          mutation={AUTH_MUTATION}
-          variables= {{email: Setting.usernam, password: Setting.password}}
-          onCompleted={data => this._confirm(data)}
-          onError    ={error => this._confirm(error)}
-        >
-          { mutation => (
-            <Button  onPress={() => mutation()}>
-              <Text>ERRRERE RER ER</Text>
-            </Button>
-          )}
-        </Mutation>
-      </Layout>
-    );
+    return this.props.children;
   }
 
-  onComplete = async data => {
+}
+
+
+
+const  onComplete = async data => {
     this.storeToken(data.signIn.accessToken);
-  }
-
-  onError = data => {
-    alert('خطایی در حین ورود به سامانه پیش آمد لطفا دقایقی دیگیر مجدد تلاش کنید');
-  }
-
-  storeToken = async (token) => {
-  try {
-    await AsyncStorage.setItem('token', token);
-  } catch (error) {
-    alert('خطایی در زمان ذخیره‌سازی پیش آمد');
-  }
 };
+
+const  onError = data => {
+    //alert(data);
+    alert('خطایی در حین ورود به سامانه پیش آمد لطفا دقایقی دیگیر مجدد تلاش کنید');
+};
+
+const  storeToken = async (token) => {
+    try {
+      await AsyncStorage.setItem('token', token);
+      this.props.navigation.navigate('App');
+    } catch (error) {
+      alert('خطایی در زمان ذخیره‌سازی پیش آمد');
+    }
+  };
+export default function Auth(){
+  return (
+    <Layout>
+      <Mutation
+        mutation={AUTH_MUTATION}
+        variables= {{email: Setting.username, password: Setting.password}}
+        onCompleted={data => onComplete(data)}
+        onError    ={error => onError(error)}
+      >
+        {(mutation, { data, error }) => (
+          <CallAuth mutation={mutation}>
+                  <View>
+        <ActivityIndicator />
+        <StatusBar barStyle="default" />
+      </View>
+            </CallAuth>
+        )}
+      </Mutation>
+    </Layout>
+  );
 }
