@@ -19,8 +19,8 @@ export default class AuthLoadingScreen extends Component {
 
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
-
-    this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+    // TODO: AND IF USER STILL SUBSCRIBED
+    this.props.navigation.navigate(userToken ? 'App' : 'Generate');
   };
 
   // Render any loading content that you like here

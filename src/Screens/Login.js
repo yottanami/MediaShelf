@@ -67,7 +67,7 @@ export default class Login extends Component {
   }
 
   handleLocalLogin(){
-    NavigationService.navigate('Categories');
+    NavigationService.navigate('Auth');
   }
 
   handleFocus(){
