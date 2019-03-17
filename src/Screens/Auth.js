@@ -36,9 +36,8 @@ class CallAuth extends Component {
 }
 
 
-
 const  onComplete = async data => {
-    this.storeToken(data.signIn.accessToken);
+    storeToken(data.signIn.accessToken);
 };
 
 const  onError = data => {
@@ -49,9 +48,10 @@ const  onError = data => {
 const  storeToken = async (token) => {
     try {
       await AsyncStorage.setItem('token', token);
-      this.props.navigation.navigate('App');
     } catch (error) {
       alert('خطایی در زمان ذخیره‌سازی پیش آمد');
+    } finally {
+       NavigationService.navigate('App');
     }
   };
 export default function Auth(){
@@ -65,11 +65,11 @@ export default function Auth(){
       >
         {(mutation, { data, error }) => (
           <CallAuth mutation={mutation}>
-                  <View>
-        <ActivityIndicator />
-        <StatusBar barStyle="default" />
-      </View>
-            </CallAuth>
+            <View>
+              <ActivityIndicator />
+              <StatusBar barStyle="default" />
+            </View>
+          </CallAuth>
         )}
       </Mutation>
     </Layout>
