@@ -36,12 +36,11 @@ class CallAuth extends Component {
 }
 
 
-const  onComplete = async data => {
-    storeToken(data.signIn.accessToken);
+const onComplete = async (data) => {
+  storeToken(data.signIn.accessToken);
 };
 
 const  onError = data => {
-    //alert(data);
     alert('خطایی در حین ورود به سامانه پیش آمد لطفا دقایقی دیگیر مجدد تلاش کنید');
 };
 
@@ -51,7 +50,7 @@ const  storeToken = async (token) => {
     } catch (error) {
       alert('خطایی در زمان ذخیره‌سازی پیش آمد');
     } finally {
-       NavigationService.navigate('App');
+       this.navigation.navigate('App');
     }
   };
 export default function Auth(){

@@ -25,6 +25,7 @@ export default class AuthLoadingScreen extends Component {
 
   // Render any loading content that you like here
   render() {
+
     return (
       <View>
         <ActivityIndicator />

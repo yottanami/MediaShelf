@@ -67,7 +67,7 @@ export default class Login extends Component {
   }
 
   handleLocalLogin(){
-    NavigationService.navigate('Auth');
+    this.props.navigation.navigate('Auth');
   }
 
   handleFocus(){

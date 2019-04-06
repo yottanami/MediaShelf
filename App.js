@@ -12,7 +12,6 @@ import { createStackNavigator, createAppContainer, createSwitchNavigator } from 
 import { SafeAreaView } from "react-navigation";
 import NavigationService from './src/Configs/NavigationService';
 
-
 const AuthStack = createStackNavigator({ Auth: Auth, Generate: Generate, Login: Login });
 
 const MainNavigator = createStackNavigator({
@@ -22,20 +21,20 @@ const MainNavigator = createStackNavigator({
   Posts: Posts,
   Post: Post,
 },
-                                          {
-                                            initialRouteName: 'Home',
-                                            defaultNavigationOptions: {
-                                              headerStyle: {
-                                                backgroundColor: '#f4511e',
-                                              },
-                                              headerTintColor: '#fff',
-                                              headerTitleStyle: {
-                                                fontWeight: 'bold',
-                                              },
-                                            }
-                                          }
+                                           {
+                                             //                                            initialRouteName: 'Home',
+                                             defaultNavigationOptions: {
+                                               headerStyle: {
+                                                 backgroundColor: '#f4511e',
+                                               },
+                                               headerTintColor: '#fff',
+                                               headerTitleStyle: {
+                                                 fontWeight: 'bold',
+                                               },
+                                             }
+                                           }
                                           );
-const AppContainer = createAppContainer(createSwitchNavigator(
+export default createAppContainer(createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
     App: MainNavigator,
@@ -46,18 +45,18 @@ const AppContainer = createAppContainer(createSwitchNavigator(
   }
 ));
 
-export default class App extends Component {
-  render() {
+//export default class App extends Component {
+//  render() {
 
-     return (
-        <AppContainer
-          ref={navigatorRef => {
-            NavigationService.setTopLevelNavigator(navigatorRef);
-          }}
-        />
-    );
-  }
-}
+//     return (
+//        <AppContainer
+//         ref={navigatorRef => {
+//          NavigationService.setTopLevelNavigator(navigatorRef);
+//       }}
+//    />
+//);
+//}
+//}
 
 
 

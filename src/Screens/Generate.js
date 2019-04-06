@@ -72,18 +72,19 @@ export default class Generate extends Component {
     GenerateAPI(this.state.mobile, this.handleLogin, this.handleError);
   }
   handleLogin(){
-    NavigationService.navigate('Login', {mobile: this.state.mobile});
+    this.props.navigation.navigate('Login', {mobile: this.state.mobile});
   }
 
   handleError(result){
     switch(result){
     case 'FAILED':
       alert('مشکلی در حین ارسال پیامک پیش آمد لطفا دقایقی دیگر مجدد تلاش بفرمایید');
+      break;
     case 'SENT BEFORE':
       alert('دقایقی پیش پیامک برای شما ارسال شده است جهت ارسال مجدد چند دقیقه دیگر امتحان کنید');
-      NavigationService.navigate('Login', {mobile: this.state.mobile});
+      break;
     default:
-      alert(result);
+      console.log(result);
     }
   }
 
