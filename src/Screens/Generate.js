@@ -12,7 +12,7 @@ import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Ic
 
 import Setting from "../Configs/settings";
 import { colors, fontSize, styles } from "../Styles/styles";
-import NavigationService from '../Configs/NavigationService';
+//import NavigationService from '../Configs/NavigationService';
 import {GenerateAPI} from '../Configs/ApiCalls';
 
 export default class Generate extends Component {

@@ -15,8 +15,6 @@ import NavigationService from './src/Configs/NavigationService';
 const AuthStack = createStackNavigator({ Auth: Auth, Generate: Generate, Login: Login });
 
 const MainNavigator = createStackNavigator({
-  Auth: Auth,
-  Generate: Generate,
   Home: Categories,
   Posts: Posts,
   Post: Post,
@@ -38,7 +36,7 @@ export default createAppContainer(createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
     App: MainNavigator,
-    Auth: AuthStack,
+    AuthStack: AuthStack,
   },
   {
     initialRouteName: 'AuthLoading',

@@ -9,7 +9,7 @@ import Setting from '../Configs/settings';
 
 
 const AUTH_MUTATION = gql`
-mutation singIn($email: String!, $password: String! ) {
+mutation singIxn($email: String!, $password: String! ) {
   signIn(input: {email: $email, password: $password}) {
     accessToken
     errors
@@ -17,13 +17,8 @@ mutation singIn($email: String!, $password: String! ) {
 }
 `;
 
-
-
 class CallAuth extends Component {
 
-  constructor(props){
-    super(props);
-  }
 
   componentDidMount(){
     this.props.mutation();
@@ -36,23 +31,7 @@ class CallAuth extends Component {
 }
 
 
-const onComplete = async (data) => {
-  storeToken(data.signIn.accessToken);
-};
 
-const  onError = data => {
-    alert('خطایی در حین ورود به سامانه پیش آمد لطفا دقایقی دیگیر مجدد تلاش کنید');
-};
-
-const  storeToken = async (token) => {
-    try {
-      await AsyncStorage.setItem('token', token);
-    } catch (error) {
-      alert('خطایی در زمان ذخیره‌سازی پیش آمد');
-    } finally {
-       this.navigation.navigate('App');
-    }
-  };
 export default function Auth(){
   return (
     <Layout>
@@ -74,3 +53,23 @@ export default function Auth(){
     </Layout>
   );
 }
+
+
+
+onComplete = async (data) => {
+  this.storeToken(data.signIn.accessToken);
+};
+
+onError = data => {
+  alert('خطایی در حین ورود به سامانه پیش آمد لطفا دقایقی دیگیر مجدد تلاش کنید');
+};
+
+storeToken = async (token) => {
+  try {
+    AsyncStorage.setItem('token', token);
+  } catch (error) {
+    alert('خطایی در زمان ذخیره‌سازی پیش آمد');
+  } finally {
+    NavigationService.navigate('App');
+  }
+};
