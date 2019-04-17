@@ -16,7 +16,7 @@ export default class AuthLoadingScreen extends Component {
   }
   _bootstrapAsync =  async() => {
     await AsyncStorage.getItem('userToken').then((userToken) => {
-      this.props.navigation.navigate(userToken ? 'App' : 'Generate');
+      this.props.navigation.navigate(userToken ? 'App' : 'RequestOTP');
     });
   };
 

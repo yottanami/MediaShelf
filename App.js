@@ -4,15 +4,15 @@ import React, {Component} from 'react';
 import Categories from './src/Screens/Categories';
 import Login from './src/Screens/Login';
 import AuthLoadingScreen from './src/Screens/AuthLoadingScreen';
-import Auth from './src/Screens/Auth';
-import Generate from './src/Screens/Generate';
+import RequestOTP from './src/Screens/ReuqestOTP';
+import ConfirmOTP from './src/Screens/ConfirmOTP';
 import Posts from './src/Screens/Posts';
 import Post from './src/Screens/Post';
 import { createStackNavigator, createAppContainer, createSwitchNavigator } from "react-navigation";
 import { SafeAreaView } from "react-navigation";
 import NavigationService from './src/Configs/NavigationService';
 
-const AuthStack = createStackNavigator({ Auth: Auth, Generate: Generate, Login: Login });
+const AuthStack = createStackNavigator({ RequestOTP: RequestOTP, ConfirmOTP: ConfirmOTP });
 
 const MainNavigator = createStackNavigator({
   Home: Categories,
