@@ -2,19 +2,20 @@ import React, { Component } from "react";
 import { Mutation } from 'react-apollo';
 import gql from "graphql-tag";
 import Layout from '../Components/Layout';
-
+import ConfirmOTP from './ConfirmOTP';
 import {
   View,
   TextInput,
   Keyboard,
   TouchableOpacity,
   StyleSheet,
-  Button
+  Text
 } from 'react-native';
+import {Button} from 'native-base';
 
-const REQUEST_OTP_MUTATION = gqp`
+const REQUEST_OTP_MUTATION = gql`
 mutation requestOtp($mobile: String!) {
-  generateOtp(input: $mobile) {
+  generateOtp(input: {mobile: $mobile}) {
     result
   }
 }
@@ -34,9 +35,9 @@ export default class RequestOTP extends Component {
       <Layout>
         <Mutation
           mutation={REQUEST_OTP_MUTATION}
-          variables= {{email: this.state.mobile}}
-          onCompleted={data => handleRequestOTP(data)}
-          onError    ={error => handleError(error)}
+          variables= {{mobile: this.state.mobile}}
+          onCompleted={data => this.handleRequestOTP(data)}
+          onError    ={error => this.handleError(error)}
         >
 
           {(mutation, { data, error }) => (
@@ -52,6 +53,7 @@ export default class RequestOTP extends Component {
                 value={this.state.mobile}
                 maxLength={11}
               />
+
               <Button
                 onPress={()=>{
                   mutation({
@@ -65,9 +67,7 @@ export default class RequestOTP extends Component {
                 }}
 
               >
-                <Text>
-                  ارسال
-                </Text>
+                <Text>ورود</Text>
               </Button>
             </View>
           )}
@@ -93,10 +93,18 @@ export default class RequestOTP extends Component {
   }
 
   handleFocus(){
-    this.setState({mobile: ''});
+    this.setState({mobile: '09'});
   }
 
   handleRequestOTP(result){
+    if (result.generateOtp.result == 'Success'){
+      console.log('----');
+      console.log(this.props);
+      console.log('----');
+      this.props.navigation.navigate('ConfirmOTP');
+    }else{
+      alert('خطایی در زمان ورود پیش آمد لطفا دقایقی صبر نمایید و مجدد تلاش فرمایید');
+    }
 
   }
 
