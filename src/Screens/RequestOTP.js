@@ -63,7 +63,7 @@ export default class RequestOTP extends Component {
                   })
                     .then(res => res)
                     .catch(err => err);
-                  this.setState({mobile: '09---------'});
+//                  this.setState({mobile: '09---------'});
                 }}
 
               >
@@ -98,11 +98,9 @@ export default class RequestOTP extends Component {
 
   handleRequestOTP(result){
     if (result.generateOtp.result == 'Success'){
-      console.log('----');
-      console.log(this.props);
-      console.log('----');
-      this.props.navigation.navigate('ConfirmOTP');
+      this.props.navigation.navigate('ConfirmOTP', {mobile: this.state.mobile});
     }else{
+//      console.log(result.generateOtp);
       alert('خطایی در زمان ورود پیش آمد لطفا دقایقی صبر نمایید و مجدد تلاش فرمایید');
     }
 
