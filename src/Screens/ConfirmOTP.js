@@ -3,7 +3,7 @@ import { Mutation } from 'react-apollo';
 import gql from "graphql-tag";
 import Layout from '../Components/Layout';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
-
+import {AsyncStorage} from 'react-native';
 import {
   View,
   TextInput,
@@ -99,9 +99,15 @@ export default class ConfirmOTP extends Component {
     this.setState({otp: ''});
   }
 
-  handleConfirmOTP(result){
+  async handleConfirmOTP(result){
     if (result.confirmOtp.accessToken){
-      this.props.navigation.navigate('App');
+          try {
+            await AsyncStorage.setItem('userToken', result.confirmOtp.accessToken);
+          } catch (error) {
+            alert('خطایی در زمان ذخیره‌سازی پیش آمد');
+          } finally {
+            this.props.navigation.navigate('App');
+          }
     }else{
       alert('خطایی در زمان ورود پیش آمد لطفا از صحت کد وارد شده مطمئن شوید');
     }

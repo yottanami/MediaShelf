@@ -36,9 +36,10 @@ export default class AppoloProvider extends Component {
       return {
         headers: {
           ...headers,
-          authorization: token ? `Bearer ${token}` : "",
+          authorization: token ? `${token}` : "",
         }
       };
+      console.log(token);
     });
 
     const client = new ApolloClient({
@@ -66,7 +67,7 @@ export default class AppoloProvider extends Component {
 
   getToken = async () => {
   try {
-    const value = await AsyncStorage.getItem('token');
+    const value = await AsyncStorage.getItem('userToken');
     if (value !== null) {
       return value;
     }
