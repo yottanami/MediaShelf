@@ -23,15 +23,16 @@ export default class AppoloProvider extends Component {
   }
 
 
-  render() {
+
+render() {
     const httpLink = createHttpLink({
       uri: Settings.serverPath,
     });
 
     //TODO: move it out of render
-    const authLink = setContext((_, { headers }) => {
+    const authLink = setContext(async (_, { headers }) => {
       // get the authentication token from local storage if it exists
-      const token = this.getToken();
+      const token = await AsyncStorage.getItem('userToken');
       // return the headers to the context so httpLink can read them
       return {
         headers: {
@@ -46,15 +47,6 @@ export default class AppoloProvider extends Component {
       link: authLink.concat(httpLink),
       cache: new InMemoryCache()
     });
-    //const cache = new InMemoryCache();
-    //const client = new ApolloClient(
-    // {
-    //  uri: Settings.serverPath
-    //cache
-    //}
-    //);
-
-    //const store = applyMiddleware()(createStore);
 
     return (
       <ApolloProvider client={client}>
@@ -64,15 +56,4 @@ export default class AppoloProvider extends Component {
       </ApolloProvider>
     );
   }
-
-  getToken = async () => {
-  try {
-    const value = await AsyncStorage.getItem('userToken');
-    if (value !== null) {
-      return value;
-    }
-  } catch (error) {
-    alert('خطایی در زمان دریافت اطلاعات رخ داده است');
-  }
-};
 }

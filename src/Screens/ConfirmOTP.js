@@ -25,11 +25,9 @@ export default class ConfirmOTP extends Component {
   constructor(props){
     super(props);
     this.state = { otp: '----' , mobile: this.props.navigation.getParam('mobile')};
-    console.log(this.props.navigation.getParam('mobile'));
     this.handleError = this.handleError.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
     this.handleConfirmOTP = this.handleConfirmOTP.bind(this);
-    console.log(this.state.mobile);
   }
 
   render(){

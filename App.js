@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 
 import Categories from './src/Screens/Categories';
-import Login from './src/Screens/Login';
 import AuthLoadingScreen from './src/Screens/AuthLoadingScreen';
 import RequestOTP from './src/Screens/RequestOTP';
 import ConfirmOTP from './src/Screens/ConfirmOTP';
