@@ -11,7 +11,27 @@ import { createStackNavigator, createAppContainer, createSwitchNavigator } from 
 import { SafeAreaView } from "react-navigation";
 import NavigationService from './src/Configs/NavigationService';
 
-const AuthStack = createStackNavigator({ RequestOTP: RequestOTP, ConfirmOTP: ConfirmOTP });
+const AuthStack = createStackNavigator({ RequestOTP: RequestOTP, ConfirmOTP: ConfirmOTP },
+                                       {
+                                         cardStyle: { backgroundColor: '#07263b' },
+                                         headerStyle: {
+                                           backgroundColor: '#2f304c',
+                                         },
+                                         defaultNavigationOptions: {
+                                           headerTitle: 'نام اپلیکیشن',
+                                           headerStyle: {
+                                             backgroundColor: '#2f304c',
+                                           },
+                                           headerTitleStyle: {
+                                             textAlign: 'center',
+                                             fontWeight: 'bold',
+                                             color: '#fff',
+                                             flex: 1,
+                                             textAlign: 'right'
+                                           },
+                                         }
+                                       }
+                                      );
 
 const MainNavigator = createStackNavigator({
   Home: Categories,
@@ -19,12 +39,13 @@ const MainNavigator = createStackNavigator({
   Post: Post,
 },
                                            {
-                                             //                                            initialRouteName: 'Home',
+                                             //
+                                             cardStyle: { backgroundColor: '#07263b' },
+                                             initialRouteName: 'Home',
                                              defaultNavigationOptions: {
                                                headerStyle: {
-                                                 backgroundColor: '#f4511e',
+                                                 backgroundColor: '#2f304c',
                                                },
-                                               headerTintColor: '#fff',
                                                headerTitleStyle: {
                                                  fontWeight: 'bold',
                                                },
