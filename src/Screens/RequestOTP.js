@@ -8,7 +8,6 @@ import {
   TextInput,
   Keyboard,
   TouchableOpacity,
-  StyleSheet,
   Text
 } from 'react-native';
 import {Button} from 'native-base';
@@ -41,7 +40,9 @@ export default class RequestOTP extends Component {
         >
 
           {(mutation, { data, error }) => (
+
             <View>
+              <Text>Here</Text>
               <Text>
                 شماره موبایل خود را وارد کنید:
               </Text>

@@ -9,23 +9,27 @@ import Posts from './src/Screens/Posts';
 import Post from './src/Screens/Post';
 import { createStackNavigator, createAppContainer, createSwitchNavigator } from "react-navigation";
 import { SafeAreaView } from "react-navigation";
+import { Icon } from "native-base";
+import { styles, colors } from "./src/Styles/styles";
 import NavigationService from './src/Configs/NavigationService';
 
 const AuthStack = createStackNavigator({ RequestOTP: RequestOTP, ConfirmOTP: ConfirmOTP },
                                        {
-                                         cardStyle: { backgroundColor: '#07263b' },
+                                         cardStyle: { backgroundColor: '#07263b',
+                                                    },
                                          headerStyle: {
                                            backgroundColor: '#2f304c',
                                          },
                                          defaultNavigationOptions: {
                                            headerTitle: 'نام اپلیکیشن',
+                                           headerLeft: (<Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon}/>
+ ),
                                            headerStyle: {
-                                             backgroundColor: '#2f304c',
+                                             backgroundColor: colors.whiteBlue,
                                            },
                                            headerTitleStyle: {
-                                             textAlign: 'center',
                                              fontWeight: 'bold',
-                                             color: '#fff',
+                                             color: colors.white,
                                              flex: 1,
                                              textAlign: 'right'
                                            },

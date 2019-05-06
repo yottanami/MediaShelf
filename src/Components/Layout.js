@@ -8,6 +8,7 @@ import GraphqlProvider from './GraphqlProvider';
 
 import getTheme from '../../native-base-theme/components';
 import customVariables from '../variables';
+import material from '../../native-base-theme/variables/material';
 
 export default class Layout extends Component {
 
@@ -26,16 +27,18 @@ export default class Layout extends Component {
   render(){
 
     return (
-      <StyleProvider  style={getTheme(customVariables)}>
+
         <Container>
           <Content>
             <GraphqlProvider>
-
-              {this.props.children}
+              <Text>Debug</Text>
+              <StyleProvider style={getTheme(material)}>
+                {this.props.children}
+              </StyleProvider>
             </GraphqlProvider>
           </Content>
         </Container>
-      </StyleProvider>
+
     );
   }
 }

@@ -1,4 +1,4 @@
-// @flow
+/ @flow
 
 import color from "color";
 
@@ -240,7 +240,7 @@ export default {
   tabFontSize: 15,
 
   // Text
-  textColor: "#000",
+  textColor: "#FFF",
   inverseTextColor: "#fff",
   noteFontSize: 14,
   get defaultTextColor() {

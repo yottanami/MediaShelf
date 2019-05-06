@@ -17,7 +17,6 @@ import Settings from '../Configs/settings';
 
 export default class AppoloProvider extends Component {
 
-
   constructor(props) {
     super(props);
   }
