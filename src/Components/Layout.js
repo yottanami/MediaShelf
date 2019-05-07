@@ -1,15 +1,9 @@
 import React, {Component} from 'react';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, StyleProvider } from 'native-base';
-import Settings from '../Configs/settings';
-import SideBar from './Sidebar';
-
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Drawer, StyleProvider } from 'native-base';
 import GraphqlProvider from './GraphqlProvider';
-
-
 import getTheme from '../../native-base-theme/components';
-import customVariables from '../variables';
 import material from '../../native-base-theme/variables/material';
-
+import {  styles } from "../Styles/styles";
 export default class Layout extends Component {
 
   constructor(props) {
@@ -27,18 +21,15 @@ export default class Layout extends Component {
   render(){
 
     return (
-
-        <Container>
+      <Container style={styles.container}>
           <Content>
             <GraphqlProvider>
-              <Text>Debug</Text>
               <StyleProvider style={getTheme(material)}>
-                {this.props.children}
+                  {this.props.children}
               </StyleProvider>
             </GraphqlProvider>
           </Content>
         </Container>
-
     );
   }
 }

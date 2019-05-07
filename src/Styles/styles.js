@@ -15,12 +15,14 @@ export const fontSize = {
 };
 
 export const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.darkBlue
+  },
   headerMenuIcon:{
     fontSize: 30,
     paddingLeft: 20
   },
   videoBox: {
-
     flex: 1,
     justifyContent: 'center'
   },

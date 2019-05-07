@@ -9,7 +9,7 @@ export default (variables /*: * */ = variable) => {
   const theme = {
     flex: 1,
     height: Platform.OS === "ios" ? deviceHeight : deviceHeight - 20,
-    backgroundColor: variables.containerBgColor
+    backgroundColor: "#2E3B4B"
   };
 
   return theme;

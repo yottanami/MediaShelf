@@ -5,10 +5,12 @@ import Layout from '../Components/Layout';
 import ConfirmOTP from './ConfirmOTP';
 import {
   View,
+  Text
+} from 'native-base';
+import {
   TextInput,
   Keyboard,
   TouchableOpacity,
-  Text
 } from 'react-native';
 import {Button} from 'native-base';
 
@@ -42,7 +44,7 @@ export default class RequestOTP extends Component {
           {(mutation, { data, error }) => (
 
             <View>
-              <Text>Here</Text>
+              <Text>inside request otp</Text>
               <Text>
                 شماره موبایل خود را وارد کنید:
               </Text>

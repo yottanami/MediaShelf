@@ -15,15 +15,14 @@ import NavigationService from './src/Configs/NavigationService';
 
 const AuthStack = createStackNavigator({ RequestOTP: RequestOTP, ConfirmOTP: ConfirmOTP },
                                        {
-                                         cardStyle: { backgroundColor: '#07263b',
-                                                    },
+                                         cardStyle: { backgroundColor: '#FF0000' },
                                          headerStyle: {
                                            backgroundColor: '#2f304c',
                                          },
                                          defaultNavigationOptions: {
                                            headerTitle: 'نام اپلیکیشن',
                                            headerLeft: (<Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon}/>
- ),
+                                                       ),
                                            headerStyle: {
                                              backgroundColor: colors.whiteBlue,
                                            },
@@ -43,7 +42,6 @@ const MainNavigator = createStackNavigator({
   Post: Post,
 },
                                            {
-                                             //
                                              cardStyle: { backgroundColor: '#07263b' },
                                              initialRouteName: 'Home',
                                              defaultNavigationOptions: {
