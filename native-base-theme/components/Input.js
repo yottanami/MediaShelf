@@ -7,6 +7,8 @@ export default (variables /*: * */ = variable) => {
     '.multiline': {
       height: null,
     },
+    backgroundColor: '#0e2d3f',
+    width: '80%',
     height: variables.inputHeightBase,
     color: variables.inputColor,
     paddingLeft: 5,

@@ -30,7 +30,8 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     padding: 30,
     textAlign: 'center'
-  },grid: {
+  },
+  grid: {
     justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -56,4 +57,10 @@ export const styles = StyleSheet.create({
     marginTop: 5,
     textAlign:'center',
   },
+  contentBox: {
+    justifyContent:'center',
+    alignItems:'center',
+    paddingLeft: 30,
+    paddingRight: 30,
+  }
 });

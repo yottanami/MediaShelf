@@ -5,14 +5,15 @@ import Layout from '../Components/Layout';
 import ConfirmOTP from './ConfirmOTP';
 import {
   View,
-  Text
+  Text,
+  Input
 } from 'native-base';
 import {
-  TextInput,
   Keyboard,
   TouchableOpacity,
 } from 'react-native';
 import {Button} from 'native-base';
+import { Image } from 'react-native';
 
 const REQUEST_OTP_MUTATION = gql`
 mutation requestOtp($mobile: String!) {
@@ -21,6 +22,7 @@ mutation requestOtp($mobile: String!) {
   }
 }
 `;
+import {  styles } from "../Styles/styles";
 
 export default class RequestOTP extends Component {
   constructor(props){
@@ -43,13 +45,19 @@ export default class RequestOTP extends Component {
 
           {(mutation, { data, error }) => (
 
-            <View>
-              <Text>inside request otp</Text>
+            <View style={styles.contentBox}>
+              <Image
+                resizeMode={'contain'}
+                source={require('../assets/logo.png')}
+                style={{
+                  width: 200,
+                }}
+              />
               <Text>
                 شماره موبایل خود را وارد کنید:
               </Text>
 
-              <TextInput
+              <Input
                 keyboardType="numeric"
                 onChangeText={(mobile) => this.handleInputChange(mobile)}
                 onFocus={this.handleFocus}
