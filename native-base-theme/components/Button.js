@@ -311,7 +311,7 @@ export default (variables /*: * */ = variable) => {
     ".capitalize": {},
 
     ".vertical": {
-      flexDirection: "column",
+//      flexDirection: "column",
       height: null
     },
 
@@ -319,9 +319,10 @@ export default (variables /*: * */ = variable) => {
       fontFamily: variables.btnFontFamily,
       marginLeft: 0,
       marginRight: 0,
-      color: variables.inverseTextColor,
-      fontSize: variables.btnTextSize,
-      paddingHorizontal: 16,
+      color: "#fff",
+      fontWeight: 'bold',
+      fontSize: variables.btnTextSize + 4,
+      paddingHorizontal: 6,
       backgroundColor: "transparent"
       // childPosition: 1
     },
@@ -381,14 +382,16 @@ export default (variables /*: * */ = variable) => {
     borderColor: variables.btnPrimaryBg,
     borderWidth: null,
     height: 45,
-    alignSelf: "flex-start",
-    flexDirection: "row",
+//    alignSelf: "flex-start",
+//    flexDirection: "row",
     elevation: 2,
-    shadowColor: platformStyle === "material" ? variables.brandDark : undefined,
+    shadowColor: "#cdcdcd",
+    width: "80%",
+    paddingTop: 6,
     shadowOffset:
-      platformStyle === "material" ? { width: 0, height: 2 } : undefined,
-    shadowOpacity: platformStyle === "material" ? 0.2 : undefined,
-    shadowRadius: platformStyle === "material" ? 1.2 : undefined,
+      { width: 10, height: 2 },
+    shadowOpacity: 2,
+    shadowRadius: 2,
     alignItems: "center",
     justifyContent: "space-between"
   };

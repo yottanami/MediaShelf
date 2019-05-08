@@ -121,7 +121,7 @@ export default {
   datePickerBg: "transparent",
 
   // Font
-  DefaultFontSize: 16,
+  DefaultFontSize: 18,
   fontFamily: platform === "ios" ? "System" : "Roboto",
   fontSizeBase: 15,
   get fontSizeH1() {
@@ -242,7 +242,8 @@ export default {
   // Text
   textColor: "#FFF",
   inverseTextColor: "#000",
-  noteFontSize: 14,
+  noteFontSize: 16,
+  paddingBottom: 40,
   get defaultTextColor() {
     return this.textColor;
   },

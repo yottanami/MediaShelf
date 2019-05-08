@@ -68,7 +68,7 @@ export default {
     return this.inverseTextColor;
   },
   get btnTextSize() {
-    return this.fontSizeBase - 1;
+    return this.fontSizeBase;
   },
   get btnTextSizeLarge() {
     return this.fontSizeBase * 1.5;
@@ -105,7 +105,7 @@ export default {
   checkboxTickColor: "#fff",
 
   // Color
-  brandPrimary: "#3F51B5",
+  brandPrimary: "#37bfbf",
   brandInfo: "#62B1F6",
   brandSuccess: "#5cb85c",
   brandDanger: "#d9534f",
@@ -121,7 +121,7 @@ export default {
   datePickerBg: "transparent",
 
   // Font
-  DefaultFontSize: 16,
+  DefaultFontSize: 18,
   fontFamily: "Roboto",
   fontSizeBase: 15,
   get fontSizeH1() {
@@ -242,7 +242,7 @@ export default {
   // Text
   textColor: "#cdcdcd",
   inverseTextColor: "#000",
-  noteFontSize: 14,
+  noteFontSize: 16,
   get defaultTextColor() {
     return this.textColor;
   },

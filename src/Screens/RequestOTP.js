@@ -6,14 +6,15 @@ import ConfirmOTP from './ConfirmOTP';
 import {
   View,
   Text,
-  Input
+  Input,
+  Button
 } from 'native-base';
 import {
   Keyboard,
   TouchableOpacity,
+  Image,
+  ImageBackground
 } from 'react-native';
-import {Button} from 'native-base';
-import { Image } from 'react-native';
 
 const REQUEST_OTP_MUTATION = gql`
 mutation requestOtp($mobile: String!) {
@@ -44,43 +45,45 @@ export default class RequestOTP extends Component {
         >
 
           {(mutation, { data, error }) => (
+            //<ImageBackground source={require('../assets/bg5.png')} style={styles.backgroundImage}>
+              <View style={styles.contentBox}>
+                <Image
+                  resizeMode={'contain'}
+                  source={require('../assets/logo.png')}
+                  style={{
+                    width: 200,
+                  }}
+                />
+                <Text>
+                  شماره موبایل خود را وارد کنید
+                </Text>
 
-            <View style={styles.contentBox}>
-              <Image
-                resizeMode={'contain'}
-                source={require('../assets/logo.png')}
-                style={{
-                  width: 200,
-                }}
-              />
-              <Text>
-                شماره موبایل خود را وارد کنید:
-              </Text>
+                <Input
+                  keyboardType="numeric"
+                  onChangeText={(mobile) => this.handleInputChange(mobile)}
+                  onFocus={this.handleFocus}
+                  value={this.state.mobile}
+                  maxLength={11}
+                />
 
-              <Input
-                keyboardType="numeric"
-                onChangeText={(mobile) => this.handleInputChange(mobile)}
-                onFocus={this.handleFocus}
-                value={this.state.mobile}
-                maxLength={11}
-              />
+                <Button
+                  onPress={()=>{
+                    mutation({
+                      variables: {
+                        mobile: this.state.mobile
+                      }
+                    })
+                      .then(res => res)
+                      .catch(err => err);
+                    //                  this.setState({mobile: '09---------'});
+                  }}
 
-              <Button
-                onPress={()=>{
-                  mutation({
-                    variables: {
-                      mobile: this.state.mobile
-                    }
-                  })
-                    .then(res => res)
-                    .catch(err => err);
-//                  this.setState({mobile: '09---------'});
-                }}
+                >
+                  <Text>ورود</Text>
+                </Button>
+              </View>
+            //</ImageBackground>
 
-              >
-                <Text>ورود</Text>
-              </Button>
-            </View>
           )}
 
         </Mutation>
@@ -111,7 +114,7 @@ export default class RequestOTP extends Component {
     if (result.generateOtp.result == 'Success'){
       this.props.navigation.navigate('ConfirmOTP', {mobile: this.state.mobile});
     }else{
-//      console.log(result.generateOtp);
+      //      console.log(result.generateOtp);
       alert('خطایی در زمان ورود پیش آمد لطفا دقایقی صبر نمایید و مجدد تلاش فرمایید');
     }
 

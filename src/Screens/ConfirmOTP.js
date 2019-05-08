@@ -2,15 +2,19 @@ import React, { Component } from "react";
 import { Mutation } from 'react-apollo';
 import gql from "graphql-tag";
 import Layout from '../Components/Layout';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
-import {AsyncStorage} from 'react-native';
 import {
   View,
-  TextInput,
+  Text,
+  Input,
+  Button
+} from 'native-base';
+import {
   Keyboard,
   TouchableOpacity,
-  StyleSheet
+  Image
 } from 'react-native';
+import {AsyncStorage} from 'react-native';
+import {  styles } from "../Styles/styles";
 
 const CONFIRM_OTP_MUTATION = gql`
 mutation confirmOtp($otp: String!, $mobile: String!) {
@@ -41,12 +45,19 @@ export default class ConfirmOTP extends Component {
         >
 
           {(mutation, { data, error }) => (
-            <View>
+            <View style={styles.contentBox}>
+                              <Image
+                  resizeMode={'contain'}
+                  source={require('../assets/logo.png')}
+                  style={{
+                    width: 200,
+                  }}
+                />
               <Text>
 کدی که از طریق پیامک دریافت کرده‌اید وارد نمایید. اگر پس از ده دقیقه هنوز هیچ پیامکی دریافت نکرده‌اید مجدد تلاش نمایید
               </Text>
 
-              <TextInput
+              <Input
                 keyboardType="numeric"
                 onChangeText={(otp) => this.handleInputChange(otp)}
                 onFocus={this.handleFocus}
@@ -67,7 +78,7 @@ export default class ConfirmOTP extends Component {
 
               >
                 <Text>
-                  ارسال
+                  تایید ورود
                 </Text>
               </Button>
             </View>

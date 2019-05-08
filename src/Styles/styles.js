@@ -1,3 +1,8 @@
+import { Dimensions } from 'react-native';
+
+
+const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
+
 import {StyleSheet} from "react-native";
 
 export const colors = {
@@ -7,6 +12,7 @@ export const colors = {
   grey: "#dee3e8",
   teal: "#287b97"
 };
+
 
 export const fontSize = {
   large: "6em",
@@ -62,5 +68,13 @@ export const styles = StyleSheet.create({
     alignItems:'center',
     paddingLeft: 30,
     paddingRight: 30,
-  }
+  },
+  backgroundImage: {
+
+   resizeMode: 'cover',
+   width: viewportWidth,
+   height: viewportHeight,
+   backgroundColor: 'transparent',
+
+  },
 });
