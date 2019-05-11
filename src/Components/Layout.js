@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {View} from 'react-native';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Drawer, StyleProvider } from 'native-base';
 import GraphqlProvider from './GraphqlProvider';
 import getTheme from '../../native-base-theme/components';
@@ -22,14 +23,16 @@ export default class Layout extends Component {
 
     return (
       <Container style={styles.container}>
-          <Content>
-            <GraphqlProvider>
-              <StyleProvider style={getTheme(material)}>
-                  {this.props.children}
-              </StyleProvider>
-            </GraphqlProvider>
-          </Content>
-        </Container>
+        <Content>
+          <GraphqlProvider>
+            <StyleProvider style={getTheme(material)}>
+              <View>
+                {this.props.children}
+              </View>
+            </StyleProvider>
+          </GraphqlProvider>
+        </Content>
+      </Container>
     );
   }
 }
