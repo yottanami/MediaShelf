@@ -12,9 +12,10 @@ import gql from "graphql-tag";
 import Setting from "../Configs/settings";
 import { colors, fontSize, styles } from "../Styles/styles";
 import NavigationService from '../Configs/NavigationService';
-import { CustomCarousel } from "../Components/CustomCarousel";
+import CustomCarousel from "../Components/CustomCarousel";
 import Layout from '../Components/Layout';
-import Carousel, {pagination} from 'react-native-snap-carousel';
+
+
 
 const CategoryListQuery = gql`
 {
@@ -34,67 +35,26 @@ export default class Categories extends Component {
     this.state = {
       carousel_images: [
         {
-          title: " "
+          title: "What is Lorem Ipsum?",
+          desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
         }, {
-          title: " "
+          title: "Why do we use it?",
+          desc: "It is a long established fact that a reader will be distracted by the readable content of a pa"
         }, {
-          title: " "
+          title: "Where can I get some?",
+          desc: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered "
         }
       ]
+
     };
   }
 
-  _renderItem ({item, index, currentIndex}) {
-    const self = this;
-    return (
-      <View>
-        <Text>
-          {item.title}
-        </Text>
-      </View>
-    );
-  }
-
-  get pagination () {
-    const { entries, activeSlide } = this.state;
-    return (
-      <Pagination
-        dotsLength={entries.length}
-        activeDotIndex={activeSlide}
-        containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.75)' }}
-        dotStyle={{
-          width: 10,
-          height: 10,
-          borderRadius: 5,
-          marginHorizontal: 8,
-          backgroundColor: 'rgba(255, 255, 255, 0.92)'
-        }}
-        inactiveDotStyle={{
-          // Define styles for inactive dots here
-        }}
-        inactiveDotOpacity={0.4}
-        inactiveDotScale={0.6}
-      />
-    );
-  }
   render() {
 
     return (
       <Layout>
         <Text style={styles.title}>Categories</Text>
-
-        <Carousel
-          ref={(c) => { this._carousel = c; }}
-          renderItem={this._renderItem}
-          sliderWidth={499}
-          itemWidth={400}
-          data={this.state.carousel_images}
-          autoplay={true}
-          autoplayDelay={500}
-          autoplayInterval={3000}
-        />
-        { this.pagination }
-
+        <CustomCarousel data={this.state.carousel_images}/>
         <Query query={CategoryListQuery}>
           {({ loading, error, data }) => {
             if (loading) return <ActivityIndicator color={colors.teal} />;
