@@ -70,11 +70,24 @@ export const styles = StyleSheet.create({
     paddingRight: 30,
   },
   backgroundImage: {
-
    resizeMode: 'cover',
    width: viewportWidth,
    height: viewportHeight,
    backgroundColor: 'transparent',
 
   },
+  banner: {
+    justifyContent:'center',
+    alignItems:'center',
+    width: viewportWidth,
+    height: viewportHeight / 5,
+
+  },
+  bannerText: {
+    fontSize: 30,
+    color: '#fff',
+    textShadowColor: '#000',
+    textShadowOffset: {width: -1, height: 2},
+    textShadowRadius: 5,
+  }
 });

@@ -36,13 +36,16 @@ export default class Categories extends Component {
       carousel_images: [
         {
           title: "What is Lorem Ipsum?",
-          desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+          desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+          image: require('../assets/carousel/1.jpg')
         }, {
           title: "Why do we use it?",
-          desc: "It is a long established fact that a reader will be distracted by the readable content of a pa"
+          desc: "It is a long established fact that a reader will be distracted by the readable content of a pa",
+          image: require('../assets/carousel/2.jpg')
         }, {
           title: "Where can I get some?",
-          desc: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered "
+          desc: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered ",
+          image: require('../assets/carousel/3.jpg')
         }
       ]
 
@@ -53,7 +56,7 @@ export default class Categories extends Component {
 
     return (
       <Layout>
-        <Text style={styles.title}>Categories</Text>
+
         <CustomCarousel data={this.state.carousel_images}/>
         <Query query={CategoryListQuery}>
           {({ loading, error, data }) => {
@@ -62,6 +65,7 @@ export default class Categories extends Component {
 
             return (
               <View>
+                <Text style={styles.title}>Categories</Text>
 
                 {data.categories
                  .map(({ title, image, id }, idx, rateArr) => (
