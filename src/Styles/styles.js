@@ -1,9 +1,13 @@
 import { Dimensions } from 'react-native';
 
-
-export const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
+// export const {width, height} = Dimensions.get('window');
 
 import {StyleSheet} from "react-native";
+
+export const windowSize = {
+  height: Dimensions.get('window').height,
+  width: Dimensions.get('window').width
+};
 
 export const colors = {
   darkBlue: "#2E3B4B",
@@ -71,16 +75,16 @@ export const styles = StyleSheet.create({
   },
   backgroundImage: {
    resizeMode: 'cover',
-   width: viewportWidth,
-   height: viewportHeight,
+   width: windowSize.width,
+   height: windowSize.height,
    backgroundColor: 'transparent',
 
   },
   banner: {
     justifyContent:'center',
     alignItems:'center',
-    width: viewportWidth,
-    height: viewportHeight / 5,
+    width: windowSize.width,
+    height: windowSize.height / 4
 
   },
   bannerText: {
@@ -89,5 +93,16 @@ export const styles = StyleSheet.create({
     textShadowColor: '#000',
     textShadowOffset: {width: -1, height: 2},
     textShadowRadius: 5,
+  },
+  card: {
+    width: windowSize.width / 2,
+    height: windowSize.height / 3.1,
+    justifyContent:'center',
+    alignItems:'center',
+  },
+  cardImage:{
+    height: 200,
+    width: null,
+    flex: 1
   }
 });

@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
-  Image
+  Image,
+  Dimensions
 } from "react-native";
 import { Container,
          Header,
@@ -19,12 +20,12 @@ import { Container,
          Icon,
          Left,
          Body,
-         Right,
+         Right
        } from 'native-base';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Setting from "../Configs/settings";
-import { colors, fontSize, styles, viewportHeight, viewportWidth } from "../Styles/styles";
+import { colors, fontSize, styles, windowSize } from "../Styles/styles";
 import NavigationService from '../Configs/NavigationService';
 import CustomCarousel from "../Components/CustomCarousel";
 import Layout from '../Components/Layout';
@@ -45,7 +46,6 @@ id
 export default class Categories extends Component {
   constructor(props) {
     super(props);
-    console.log(styles.viewportWidth);
     this.state = {
       carousel_images: [
         {
@@ -68,23 +68,24 @@ export default class Categories extends Component {
   renderGridItem( item ){
 
     return (<TouchableOpacity >
-                   <Card style={styles.card} key={item.item.id}>
-                       <Image
-                         style={{ width: styles.viewportWidth, height: 150 }}
-                         source={{uri: Setting.serverMainPath + item.item.image.thumb.url}}
-                         onPress={() => NavigationService.navigate('Posts', {categoryId: item.item.id})}
-                       />
-
-                       <Text
-                         onPress={() => NavigationService.navigate('Posts', {categoryId: item.item.id})}>{item.item.title}</Text>
-
-                   </Card>
+              <Card style={styles.card} key={item.item.id}>
+                <CardItem cardBody>
+                    <Image
+                      source={{uri: Setting.serverMainPath + item.item.image.thumb.url}}
+                      style={styles.cardImage}
+                      onPress={() => NavigationService.navigate('Posts', {categoryId: item.item.id})}
+                    />
+                </CardItem>
+                <CardItem>
+                    <Text
+                      onPress={() => NavigationService.navigate('Posts', {categoryId: item.item.id})}>{item.item.title}</Text>
+                </CardItem>
+              </Card>
             </TouchableOpacity>
            );
   }
 
   render() {
-
     return (
       <Layout>
 
@@ -101,7 +102,7 @@ export default class Categories extends Component {
                   <FlatList
                     data={data.categories}
                     renderItem={this.renderGridItem}
-                     numColumns={2}
+                    numColumns={2}
                   />
 
                 </ScrollView>
