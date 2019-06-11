@@ -6,7 +6,7 @@ import {StyleSheet} from "react-native";
 
 export const windowSize = {
   height: Dimensions.get('window').height,
-  width: Dimensions.get('window').width
+  width: Dimensions.get('window').width - 14
 };
 
 export const colors = {
@@ -26,7 +26,9 @@ export const fontSize = {
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.darkBlue
+    backgroundColor: colors.darkBlue,
+    padding: 6,
+    justifyContent: 'center'
   },
   headerMenuIcon:{
     fontSize: 30,
@@ -38,7 +40,9 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    padding: 30,
+    fontWeight: "100",
+    padding: 10,
+    marginTop: 8,
     textAlign: 'center'
   },
   grid: {
@@ -80,7 +84,12 @@ export const styles = StyleSheet.create({
    backgroundColor: 'transparent',
 
   },
+
+
   banner: {
+    marginTop: 20,
+    marginBottom: 20,
+    borderRadius: 50,
     justifyContent:'center',
     alignItems:'center',
     width: windowSize.width,
@@ -101,8 +110,14 @@ export const styles = StyleSheet.create({
     alignItems:'center',
   },
   cardImage:{
-    height: 200,
-    width: null,
+    height: windowSize.height / 4.5,
     flex: 1
+  },
+  cardText: {
+    color: colors.grey,
+    paddingTop: 0,
+    paddingBottom: 0,
+    marginTop: 0,
+    marginBottom: 0,
   }
 });

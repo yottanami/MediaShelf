@@ -14,7 +14,10 @@ export default class CustomCarousel extends Component {
   _renderItem ({item, index, currentIndex}) {
     const self = this;
     return (
-      <ImageBackground source={item.image} style={styles.banner}>
+      <ImageBackground
+        source={item.image} style={styles.banner}
+        imageStyle={{ borderRadius: 25 }}
+      >
         <Text style={styles.bannerText}>{item.title}</Text>
       </ImageBackground>
     );

@@ -69,17 +69,18 @@ export default class Categories extends Component {
 
     return (<TouchableOpacity >
               <Card style={styles.card} key={item.item.id}>
-                <CardItem cardBody>
-                    <Image
-                      source={{uri: Setting.serverMainPath + item.item.image.thumb.url}}
-                      style={styles.cardImage}
-                      onPress={() => NavigationService.navigate('Posts', {categoryId: item.item.id})}
-                    />
-                </CardItem>
                 <CardItem>
-                    <Text
-                      onPress={() => NavigationService.navigate('Posts', {categoryId: item.item.id})}>{item.item.title}</Text>
+                  <Image
+                    source={{uri: Setting.serverMainPath + item.item.image.thumb.url}}
+                    style={styles.cardImage}
+                    onPress={() => NavigationService.navigate('Posts', {categoryId: item.item.id})}
+                  />
                 </CardItem>
+
+                <Text
+                  style={styles.cardText}
+                  onPress={() => NavigationService.navigate('Posts', {categoryId: item.item.id})}>{item.item.title}</Text>
+
               </Card>
             </TouchableOpacity>
            );
@@ -96,18 +97,18 @@ export default class Categories extends Component {
             if (error) return <Text>OH OH {`Error: ${error}`}</Text>;
             return (
               <View>
-                <Text style={styles.title}>Categories</Text>
-
+                <Card>
+                    <Text style={styles.title}>Categories</Text>
+                </Card>
                 <ScrollView >
                   <FlatList
                     data={data.categories}
                     renderItem={this.renderGridItem}
+                    keyExtractor={(item, index) => index.toString()}
                     numColumns={2}
                   />
 
                 </ScrollView>
-
-
 
               </View>
             );
