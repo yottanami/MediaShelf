@@ -31,6 +31,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   headerMenuIcon:{
+    color: colors.grey,
     fontSize: 30,
     paddingLeft: 20
   },

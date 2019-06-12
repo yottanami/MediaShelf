@@ -29,7 +29,7 @@ import { colors, fontSize, styles, windowSize } from "../Styles/styles";
 import NavigationService from '../Configs/NavigationService';
 import CustomCarousel from "../Components/CustomCarousel";
 import Layout from '../Components/Layout';
-
+import Category from '../Components/Category';
 
 
 const CategoryListQuery = gql`
@@ -46,6 +46,8 @@ id
 export default class Categories extends Component {
   constructor(props) {
     super(props);
+//    this._renderItem = this._renderItem.bind(this);
+
     this.state = {
       carousel_images: [
         {
@@ -62,28 +64,16 @@ export default class Categories extends Component {
           image: require('../assets/carousel/3.jpg')
         }
       ]
-
     };
   }
-  renderGridItem( item ){
 
-    return (<TouchableOpacity >
-              <Card style={styles.card} key={item.item.id}>
-                <CardItem>
-                  <Image
-                    source={{uri: Setting.serverMainPath + item.item.image.thumb.url}}
-                    style={styles.cardImage}
-                    onPress={() => NavigationService.navigate('Posts', {categoryId: item.item.id})}
-                  />
-                </CardItem>
-
-                <Text
-                  style={styles.cardText}
-                  onPress={() => NavigationService.navigate('Posts', {categoryId: item.item.id})}>{item.item.title}</Text>
-
-              </Card>
-            </TouchableOpacity>
-           );
+  _renderItem ({item, index}) {
+    return (
+      <Category
+        data={item}
+        navigation={this.props.navigation}
+      />
+    );
   }
 
   render() {
@@ -98,14 +88,16 @@ export default class Categories extends Component {
             return (
               <View>
                 <Card>
-                    <Text style={styles.title}>Categories</Text>
+                  <Text style={styles.title}
+                  >Categories</Text>
                 </Card>
                 <ScrollView >
                   <FlatList
                     data={data.categories}
-                    renderItem={this.renderGridItem}
+                    renderItem={this._renderItem.bind(this)}
                     keyExtractor={(item, index) => index.toString()}
                     numColumns={2}
+                    navigate={this.props.navigation}
                   />
 
                 </ScrollView>
