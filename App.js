@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-
-
 import Categories from './src/Screens/Categories';
 import AuthLoadingScreen from './src/Screens/AuthLoadingScreen';
 import RequestOTP from './src/Screens/RequestOTP';

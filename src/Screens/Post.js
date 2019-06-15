@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
-import {H2} from 'native-base';
+import {H2, H3, Card, CardItem, Right, Body} from 'native-base';
 import Layout from '../Components/Layout';
-import VideoPlayer from '../Components/Layout';
 import NavigationService from '../Configs/NavigationService';
 
 import { Query } from "react-apollo";
@@ -28,6 +27,26 @@ export default class Post extends Component {
   constructor(props) {
     super(props);
   }
+
+
+  static navigationOptions = ({ navigation }) => {
+    const { state } = navigation;
+    // Setup the header and tabBarVisible status
+    const header = state.params && (state.params.fullscreen ? undefined : null);
+    const tabBarVisible = state.params ? state.params.fullscreen : true;
+    return {
+      header,
+      tabBarVisible,
+    };
+  }
+
+
+  onFullScreen(status) {
+    this.props.navigation.setParams({
+      fullscreen: !status
+    });
+  }
+
   render() {
     const id = this.props.navigation.getParam('id', 0);
     return (
@@ -38,17 +57,25 @@ export default class Post extends Component {
             if (error) return <Text>OH OH :{`Error: ${error}`}</Text>;
 
             return (
-              <View style={styles.videoBox}>
-                     <H2>{data.post.title}</H2>
-                   <Video
-                     key={data.post.title}
-                     url={Setting.serverMainPath + data.post.video.url}
-                     placeholder={Setting.serverMainPath + data.post.image.url}
-                     logo={Setting.serverMainPath + data.post.image.url}
-                     title={data.post.title}
-                     rotateToFullScreen
-                   />
-                     <Text>{data.post.body}</Text>
+              <View  style={{flex:1}}>
+
+                <Right style={{flex:1}}>
+                  <H2>
+                    {data.post.title}
+                  </H2>
+                </Right>
+
+                <View style={styles.videoBox}>
+                  <Video
+                    key={data.post.title}
+                    url={Setting.serverMainPath + data.post.video.url}
+                    placeholder={Setting.serverMainPath + data.post.image.url}
+                    logo={Setting.serverMainPath + data.post.image.url}
+                    title={data.post.title}
+                    onFullScreen={status => this.onFullScreen(status)}
+                    rotateToFullScreen
+                  />
+                </View>
               </View>
             );
           }}

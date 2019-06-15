@@ -29,9 +29,11 @@ export default class Post extends Component {
   }
   render() {
     const categoryId = this.props.navigation.getParam('categoryId', 0);
+    const { navigate } = this.props.navigation;
+
     return (
       <Layout>
-        <Query query={PostQuery} variables={{categoryId}}>
+        <Query query={PostQuery} variables={{categoryId}} >
           {({ loading, error, data }) => {
             if (loading) return <ActivityIndicator color={colors.teal} />;
             if (error) return <Text>OH OH :{`Error: ${error}`}</Text>;
@@ -40,22 +42,28 @@ export default class Post extends Component {
               <View>
 
                 {data.posts
-                 .map(({ id, title, image }, idx, rateArr) => (
+                 .map(({ id, title, image, body }, idx, rateArr) => (
                    <TouchableOpacity
-                     key={title}
-                     onPress={() => NavigationService.navigate('Post', {id: id})} >
-                     <Card style={styles.card}>
-                       <CardItem >
-                         <H3>{title}</H3>
+                     key={id}
+                     onPress={() => navigate('Post', {id: id})} >
+                     <Card>
+                       <CardItem>
+                         <Right style={{flex:1}}>
+                           <H3>
+                             {title}
+                           </H3>
+                         </Right>
                        </CardItem>
+
                        <CardItem cardBody>
                          <Image
-                           style={{ width: 400, height: 250 }}
+                           style={{ width: '100%', height: 150 }}
                            source={{uri: Setting.serverMainPath +image.thumb.url}}
 
                          />
                        </CardItem>
-
+                       <CardItem footer>
+                       </CardItem>
                      </Card>
                    </TouchableOpacity>
                  ))}

@@ -39,11 +39,10 @@ export default class Category extends Component {
       const { data: { id, title, image}, navigation } = this.props;
 
         return (
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Posts', {categoryId: id})}>
             <Card
               style={styles.card}
               key={id}
-              onPress={() => navigation.navigate('Posts', {categoryId: id})}
             >
                 <CardItem>
                   <Image
