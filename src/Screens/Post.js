@@ -1,15 +1,18 @@
-import React, { Component } from "react";
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import React, { Component } from 'react';
+import { Container, StyleSheet, View, ScrollView, Alert, Text, ActivityIndicator, Orientation } from 'react-native';
 import {H2, H3, Card, CardItem, Right, Body} from 'native-base';
-import Layout from '../Components/Layout';
-import NavigationService from '../Configs/NavigationService';
-
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-
-import { colors, fontSize, styles } from "../Styles/styles";
+import { colors, fontSize } from "../Styles/styles";
 import Video from 'react-native-af-video-player';
+import { Query } from "react-apollo";
 import Setting from '../Configs/settings';
+import gql from "graphql-tag";
+import Layout from '../Components/Layout';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+});
 
 const PostQuery = gql`
 query Post($id: ID!) {
@@ -22,61 +25,84 @@ query Post($id: ID!) {
 }
 `;
 
-export default class Post extends Component {
+export default class ReactNavigationExample extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
-
-  static navigationOptions = ({ navigation }) => {
-    const { state } = navigation;
-    // Setup the header and tabBarVisible status
-    const header = state.params && (state.params.fullscreen ? undefined : null);
-    const tabBarVisible = state.params ? state.params.fullscreen : true;
-    return {
-      header,
-      tabBarVisible,
+  constructor() {
+    super();
+    this.state = {
+      fullScreen: false
     };
   }
 
 
-  onFullScreen(status) {
-    this.props.navigation.setParams({
-      fullscreen: !status
-    });
+
+  static navigationOptions = ({ navigation }) => {
+    const { state } = navigation;
+    const header = null//state.params && (state.params.fullscreen ? null : undefined);
+    return {
+      header,
+    };
+  }
+
+  fullScreenHandler(status) {
+
+    //  this.setState({ fullScreen: true }, () => {
+    //    this.props.onFullScreen(this.state.fullScreen);
+    //    if (this.props.rotateToFullScreen) Orientation.lockToLandscape();
+    //  });
+    console.log(status);
+    this.setState({fullScreen: status});
   }
 
   render() {
     const id = this.props.navigation.getParam('id', 0);
+
     return (
+
       <Layout>
         <Query query={PostQuery} variables={{id}}>
           {({ loading, error, data }) => {
             if (loading) return <ActivityIndicator color={colors.teal} />;
             if (error) return <Text>OH OH :{`Error: ${error}`}</Text>;
-
             return (
-              <View  style={{flex:1}}>
+              <ScrollView style={{flex: 1}}>
 
-                <Right style={{flex:1}}>
-                  <H2>
-                    {data.post.title}
-                  </H2>
-                </Right>
+                <Card>
+                  <CardItem>
 
-                <View style={styles.videoBox}>
-                  <Video
-                    key={data.post.title}
-                    url={Setting.serverMainPath + data.post.video.url}
-                    placeholder={Setting.serverMainPath + data.post.image.url}
-                    logo={Setting.serverMainPath + data.post.image.url}
-                    title={data.post.title}
-                    onFullScreen={status => this.onFullScreen(status)}
-                    rotateToFullScreen
-                  />
-                </View>
-              </View>
+                    <View>
+                      <Right>
+                        <H2>
+                          {data.post.title}
+                        </H2>
+                      </Right>
+                    </View>
+                  </CardItem>
+                </Card>
+
+
+                <Video
+                  key={data.post.title}
+                  url={Setting.serverMainPath + data.post.video.url}
+                  placeholder={Setting.serverMainPath + data.post.image.url}
+                  logo={Setting.serverMainPath + data.post.image.url}
+                  title={data.post.title}
+                  onFullScreen={fullScreen => this.fullScreenHandler(fullScreen)}
+                  rotateToFullScreen
+                />
+
+
+                <Card>
+                  <CardItem>
+
+
+                    <View >
+
+                      {data.post.desc}
+                    </View>
+                  </CardItem>
+                </Card>
+              </ScrollView>
             );
           }}
         </Query>
