@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Container, StyleSheet, View, ScrollView, Alert, Text, ActivityIndicator, Orientation } from 'react-native';
-import {H2, H3, Card, CardItem, Right, Body} from 'native-base';
+import { StyleSheet, View, Alert, Text, ActivityIndicator, Orientation } from 'react-native';
+import {H2, H3, Card, CardItem, Right, Body, Button} from 'native-base';
 import { colors, fontSize } from "../Styles/styles";
-import Video from 'react-native-af-video-player';
-import { Query } from "react-apollo";
+import Video, { ScrollView, Container } from 'react-native-af-video-player';
+import { Query, withApollo, ApolloConsumer } from "react-apollo";
 import Setting from '../Configs/settings';
 import gql from "graphql-tag";
 import Layout from '../Components/Layout';
-
+import VideoPlayer from '../Components/VideoPlayer';
+import NavigationService from '../Configs/NavigationService';
 const styles = StyleSheet.create({
   container: {
     flex: 1
@@ -25,88 +26,42 @@ query Post($id: ID!) {
 }
 `;
 
-export default class ReactNavigationExample extends Component {
+class Post extends Component {
 
   constructor() {
     super();
-    this.state = {
-      fullScreen: false
-    };
+    this.onFullScreen = this.onFullScreen.bind(this);
   }
-
 
 
   static navigationOptions = ({ navigation }) => {
     const { state } = navigation;
-    const header = null//state.params && (state.params.fullscreen ? null : undefined);
+    const header = (state.params.fullscreen ? null : undefined);
     return {
       header,
     };
   }
 
-  fullScreenHandler(status) {
+  onFullScreen(status) {
 
-    //  this.setState({ fullScreen: true }, () => {
-    //    this.props.onFullScreen(this.state.fullScreen);
-    //    if (this.props.rotateToFullScreen) Orientation.lockToLandscape();
-    //  });
-    console.log(status);
-    this.setState({fullScreen: status});
+        this.props.navigation.setParams({
+          fullscreen: status
+        });
   }
+
 
   render() {
     const id = this.props.navigation.getParam('id', 0);
-
     return (
-
       <Layout>
-        <Query query={PostQuery} variables={{id}}>
-          {({ loading, error, data }) => {
-            if (loading) return <ActivityIndicator color={colors.teal} />;
-            if (error) return <Text>OH OH :{`Error: ${error}`}</Text>;
-            return (
-              <ScrollView style={{flex: 1}}>
-
-                <Card>
-                  <CardItem>
-
-                    <View>
-                      <Right>
-                        <H2>
-                          {data.post.title}
-                        </H2>
-                      </Right>
-                    </View>
-                  </CardItem>
-                </Card>
-
-
-                <Video
-                  key={data.post.title}
-                  url={Setting.serverMainPath + data.post.video.url}
-                  placeholder={Setting.serverMainPath + data.post.image.url}
-                  logo={Setting.serverMainPath + data.post.image.url}
-                  title={data.post.title}
-                  onFullScreen={fullScreen => this.fullScreenHandler(fullScreen)}
-                  rotateToFullScreen
-                />
-
-
-                <Card>
-                  <CardItem>
-
-
-                    <View >
-
-                      {data.post.desc}
-                    </View>
-                  </CardItem>
-                </Card>
-              </ScrollView>
-            );
-          }}
-        </Query>
+        <ApolloConsumer>
+          {client =>
+           <VideoPlayer client={client} postID={id} setNavigationOptions={this.onFullScreen} />
+          }
+        </ApolloConsumer>
       </Layout>
     );
   }
 }
+
+export default Post = Post;
