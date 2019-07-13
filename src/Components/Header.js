@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container, Header, Left, Body, Right, Title } from 'native-base';
+import { Container, Header, Left, Body, Right, Title, Drawer } from 'native-base';
 import Settings from '../Configs/settings';
 
 export default class Head extends Component {

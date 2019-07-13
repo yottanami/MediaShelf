@@ -5,18 +5,10 @@ export default class SideBar extends Component {
     render() {
 
         return (
-            <View style={styles.container} >
+          <View >
+            <Text>Test</Text>
 
             </View>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});

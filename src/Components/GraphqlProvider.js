@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { AppRegistry, Text, View, AsyncStorage } from 'react-native';
+import { AppRegistry, Text, View, AsyncStorage, Button } from 'react-native';
 //import  HttpLink from 'apollo-boost';
 import { InMemoryCache} from 'apollo-cache-inmemory';
 
@@ -16,6 +16,23 @@ import Settings from '../Configs/settings';
 
 
 export default class AppoloProvider extends Component {
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'test',
+      headerStyle: {
+        backgroundColor: '#FF0000',
+      },
+      headerTitle: <Text>Here</Text>,
+      headerRight: (
+        <Button
+          onPress={navigation.getParam('increaseCount')}
+          title="+1"
+          color="#fff"
+        />
+      ),
+    };
+  };
 
   constructor(props) {
     super(props);

@@ -26,6 +26,8 @@ mutation requestOtp($mobile: String!) {
 import {  styles } from "../Styles/styles";
 
 export default class RequestOTP extends Component {
+
+
   constructor(props){
     super(props);
     this.state = { mobile: '09---------' };
