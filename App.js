@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 import Categories from './src/Screens/Categories';
 import AuthLoadingScreen from './src/Screens/AuthLoadingScreen';
 import RequestOTP from './src/Screens/RequestOTP';
 import ConfirmOTP from './src/Screens/ConfirmOTP';
 import Posts from './src/Screens/Posts';
 import Post from './src/Screens/Post';
-import { createStackNavigator, createAppContainer, createSwitchNavigator, createDrawerNavigator, DrawerItems } from "react-navigation";
+import SideBar from './src/Components/Sidebar';
+import { createStackNavigator, createAppContainer, createSwitchNavigator, createDrawerNavigator } from "react-navigation";
 import { Icon } from "native-base";
 import { styles, colors } from "./src/Styles/styles";
 import NavigationService from './src/Configs/NavigationService';
@@ -69,9 +70,23 @@ const MainNavigator = createStackNavigator({
 
 
 const DrawerNav = createDrawerNavigator({
-  Categories: MainNavigator
-}
+  home:
+  {
+    screen: MainNavigator,
+    navigationOptions: {
+      title: 'صفحه اصلی',
+      drawerIcon: (
+          <Icon
+            name= "home"
+          />
+        ),
+      },
+  }
+},
+                                        {
+                                          contentComponent: SideBar,
 
+                                        }
                                        );
 
 export default createAppContainer(createSwitchNavigator(

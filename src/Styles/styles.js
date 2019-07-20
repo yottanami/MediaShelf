@@ -120,5 +120,13 @@ export const styles = StyleSheet.create({
     paddingBottom: 0,
     marginTop: 0,
     marginBottom: 0,
+  },
+  drawer:{
+    backgroundColor: colors.darkBlue,
+  },
+  drawerContent: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
