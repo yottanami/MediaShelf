@@ -127,6 +127,6 @@ export const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   }
 });

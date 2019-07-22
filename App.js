@@ -76,16 +76,15 @@ const DrawerNav = createDrawerNavigator({
     navigationOptions: {
       title: 'صفحه اصلی',
       drawerIcon: (
-          <Icon
-            name= "home"
-          />
-        ),
-      },
+        <Icon
+          name="home"
+        />
+      ),
+    },
   }
 },
                                         {
                                           contentComponent: SideBar,
-
                                         }
                                        );
 

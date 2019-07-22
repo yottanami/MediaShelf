@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet} from 'react-native';
 import { DrawerItem, DrawerItems } from "react-navigation";
 import { Container, Content, Body, Icon } from 'native-base';
-import { styles } from "../Styles/styles";
+import { styles, colors } from "../Styles/styles";
 import  Setting from "../Configs/settings";
 
 
@@ -26,6 +26,7 @@ export default class SideBar extends Component {
             />
           </Body>
           <DrawerItems
+            labelStyle={{color: colors.grey}}
             {...this.props}>
           </DrawerItems>
         </Content>
