@@ -6,13 +6,14 @@ import RequestOTP from './src/Screens/RequestOTP';
 import ConfirmOTP from './src/Screens/ConfirmOTP';
 import Posts from './src/Screens/Posts';
 import Post from './src/Screens/Post';
+import About from './src/Screens/About';
+import Website from './src/Screens/Website';
 import SideBar from './src/Components/Sidebar';
 import { createStackNavigator, createAppContainer, createSwitchNavigator, createDrawerNavigator } from "react-navigation";
 import { Icon } from "native-base";
 import { styles, colors } from "./src/Styles/styles";
 import NavigationService from './src/Configs/NavigationService';
 import Setting from './src/Configs/settings';
-
 
 
 const AuthStack = createStackNavigator({ RequestOTP: RequestOTP, ConfirmOTP: ConfirmOTP },
@@ -81,7 +82,30 @@ const DrawerNav = createDrawerNavigator({
         />
       ),
     },
+  },
+  About: {
+    screen: About,
+    navigationOptions: {
+      title: 'درباره ما',
+      drawerIcon: (
+        <Icon
+          name="home"
+        />
+      ),
+    },
+  },
+  Website: {
+    screen: Website,
+        navigationOptions: {
+      title: 'وب سایت',
+      drawerIcon: (
+        <Icon
+          name="home"
+        />
+      ),
+    },
   }
+
 },
                                         {
                                           contentComponent: SideBar,
