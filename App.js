@@ -94,10 +94,21 @@ const DrawerNav = createDrawerNavigator({
       ),
     },
   },
+  Contact: {
+    screen: Contact,
+    navigationOptions: {
+      title: 'ارتباط با ما',
+      drawerIcon: (
+        <Icon
+          name="contact"
+        />
+      ),
+    },
+  },
   Website: {
     screen: Website,
         navigationOptions: {
-      title: 'وب سایت',
+      title: 'جوائز و مسابقات',
       drawerIcon: (
         <Icon
           name="home"
