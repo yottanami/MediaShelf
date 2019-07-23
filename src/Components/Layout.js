@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Drawer, StyleProvider } from 'native-base';
+import { Container, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Drawer, StyleProvider } from 'native-base';
 import GraphqlProvider from './GraphqlProvider';
 import SideBar from './Sidebar';
 import getTheme from '../../native-base-theme/components';

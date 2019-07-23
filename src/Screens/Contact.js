@@ -7,5 +7,5 @@ const Contact = () => {
     );
 };
 
-export default About;
+export default Contact;
 //AppRegistry.registerComponent("MyApp", () => App);

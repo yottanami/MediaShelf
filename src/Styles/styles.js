@@ -122,11 +122,25 @@ export const styles = StyleSheet.create({
     marginBottom: 0,
   },
   drawer:{
+    flex: 1,
     backgroundColor: colors.darkBlue,
   },
   drawerContent: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  drawerIcon: {
+    color: colors.grey,
+    fontSize: 19
+  },
+  drawerBadge: {
+    textAlign: 'center',
+    margin: 20,
+    marginTop: 40,
+    padding: 10,
+    color: colors.grey,
+    backgroundColor: '#009000',
+    fontWeight: "900",
+    borderRadius: 20,
   }
 });

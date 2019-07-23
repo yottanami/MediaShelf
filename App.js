@@ -7,6 +7,7 @@ import ConfirmOTP from './src/Screens/ConfirmOTP';
 import Posts from './src/Screens/Posts';
 import Post from './src/Screens/Post';
 import About from './src/Screens/About';
+import Contact from './src/Screens/Contact';
 import Website from './src/Screens/Website';
 import SideBar from './src/Components/Sidebar';
 import { createStackNavigator, createAppContainer, createSwitchNavigator, createDrawerNavigator } from "react-navigation";
@@ -78,7 +79,9 @@ const DrawerNav = createDrawerNavigator({
       title: 'صفحه اصلی',
       drawerIcon: (
         <Icon
+          style={styles.drawerIcon}
           name="home"
+
         />
       ),
     },
@@ -89,7 +92,9 @@ const DrawerNav = createDrawerNavigator({
       title: 'درباره ما',
       drawerIcon: (
         <Icon
-          name="home"
+          style={styles.drawerIcon}
+          name="profile"
+          type="AntDesign"
         />
       ),
     },
@@ -100,7 +105,9 @@ const DrawerNav = createDrawerNavigator({
       title: 'ارتباط با ما',
       drawerIcon: (
         <Icon
-          name="contact"
+          style={styles.drawerIcon}
+          name="contact-mail"
+          type="MaterialIcons"
         />
       ),
     },
@@ -111,7 +118,10 @@ const DrawerNav = createDrawerNavigator({
       title: 'جوائز و مسابقات',
       drawerIcon: (
         <Icon
-          name="home"
+          style={styles.drawerIcon}
+          name="present"
+          type="SimpleLineIcons"
+          size={10}
         />
       ),
     },
@@ -119,7 +129,14 @@ const DrawerNav = createDrawerNavigator({
 
 },
                                         {
+                                          contentOptions: {
+                                            activeTintColor: '#e91e63',
+                                            itemStyle: {
+                                              flexDirection: 'row-reverse'
+                                            }
+                                          },
                                           contentComponent: SideBar,
+                                          drawerPosition: 'right'
                                         }
                                        );
 
