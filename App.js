@@ -18,64 +18,50 @@ import Setting from './src/Configs/settings';
 
 
 const AuthStack = createStackNavigator({ RequestOTP: RequestOTP, ConfirmOTP: ConfirmOTP },
-
                                        {
-                                         headerStyle: {
-                                           backgroundColor: '#2f304c',
-                                         },
+                                         defaultNavigationOptions: {
+                                           //header: null,
+                                         }
+                                       }
+                                      );
+
+const MainStack = createStackNavigator({
+  Home: Categories,
+  Posts: Posts,
+  Post: Post,
+  Contact: Contact,
+},
+                                       {
+                                         cardStyle: { backgroundColor: '#07263b' },
+                                         initialRouteName: 'Home',
                                          defaultNavigationOptions: {
                                            headerTitle: Setting.appName,
-                                           headerLeft: (<Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon}/>
+                                           headerLeft: (<Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon} onPress={() => this.navigation.toggleDrawer()}/>
                                                        ),
                                            headerStyle: {
                                              backgroundColor: colors.whiteBlue,
+                                             borderWidth: 1,
+                                             borderColor: colors.darkBlue
                                            },
                                            headerTitleStyle: {
                                              fontWeight: 'bold',
                                              color: colors.grey,
                                              flex: 1,
-                                             textAlign: 'right',
+                                             textAlign: 'right'
                                            },
                                          }
-                                       },
+                                       }, {
+                                         initialRouteName: 'Home'
+                                       }
                                       );
-
-const MainNavigator = createStackNavigator({
-  Home: Categories,
-  Posts: Posts,
-  Post: Post,
-},
-                                           {
-                                             cardStyle: { backgroundColor: '#07263b' },
-                                             initialRouteName: 'Home',
-                                             defaultNavigationOptions: {
-                                               headerTitle: Setting.appName,
-                                               headerLeft: (<Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon} onPress={() => this.navigation.toggleDrawer()}/>
-                                                           ),
-                                               headerStyle: {
-                                                 backgroundColor: colors.whiteBlue,
-                                                 borderWidth: 1,
-                                                 borderColor: colors.darkBlue
-                                               },
-                                               headerTitleStyle: {
-                                                 fontWeight: 'bold',
-                                                 color: colors.grey,
-                                                 flex: 1,
-                                                 textAlign: 'right'
-                                               },
-                                             }
-                                           }, {
-                                             initialRouteName: 'Home'
-                                           }
-                                          );
 
 
 
 const DrawerNav = createDrawerNavigator({
   home:
   {
-    screen: MainNavigator,
-    navigationOptions: {
+    screen: MainStack,
+    navigationOptions: ({ navigation }) => ({
       title: 'صفحه اصلی',
       drawerIcon: (
         <Icon
@@ -84,10 +70,11 @@ const DrawerNav = createDrawerNavigator({
 
         />
       ),
-    },
+    })
   },
   About: {
     screen: About,
+
     navigationOptions: {
       title: 'درباره ما',
       drawerIcon: (
@@ -114,7 +101,7 @@ const DrawerNav = createDrawerNavigator({
   },
   Website: {
     screen: Website,
-        navigationOptions: {
+    navigationOptions: {
       title: 'جوائز و مسابقات',
       drawerIcon: (
         <Icon
@@ -129,12 +116,20 @@ const DrawerNav = createDrawerNavigator({
 
 },
                                         {
-                                          contentOptions: {
-                                            activeTintColor: '#e91e63',
-                                            itemStyle: {
-                                              flexDirection: 'row-reverse'
-                                            }
-                                          },
+
+                                          navigationOptions: ({ navigation }) => ({
+                                            headerTitle: Setting.appName,
+                                            headerLeft: (<Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon} onPress={() => this.navigation.toggleDrawer()}/>
+                                                        ),
+                                            title: 'صفحه اصلی',
+                                            drawerIcon: (
+                                              <Icon
+                                                style={styles.drawerIcon}
+                                                name="home"
+
+                                              />
+                                            ),
+                                          }),
                                           contentComponent: SideBar,
                                           drawerPosition: 'right'
                                         }
@@ -145,7 +140,6 @@ export default createAppContainer(createSwitchNavigator(
     AuthLoading: AuthLoadingScreen,
     App: DrawerNav,
     AuthStack: AuthStack,
-    HomeDrawer: DrawerNav,
   },{
     initialRouteName: 'AuthLoading',
   }
