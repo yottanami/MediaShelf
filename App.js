@@ -20,7 +20,7 @@ import Setting from './src/Configs/settings';
 const AuthStack = createStackNavigator({ RequestOTP: RequestOTP, ConfirmOTP: ConfirmOTP },
                                        {
                                          defaultNavigationOptions: {
-                                           //header: null,
+                                           header: null,
                                          }
                                        }
                                       );
@@ -58,10 +58,11 @@ const MainStack = createStackNavigator({
 
 
 const DrawerNav = createDrawerNavigator({
-  home:
+  Home:
   {
     screen: MainStack,
     navigationOptions: ({ navigation }) => ({
+      paths: '/categories',
       title: 'صفحه اصلی',
       drawerIcon: (
         <Icon
@@ -76,6 +77,7 @@ const DrawerNav = createDrawerNavigator({
     screen: About,
 
     navigationOptions: {
+
       title: 'درباره ما',
       drawerIcon: (
         <Icon
@@ -85,6 +87,7 @@ const DrawerNav = createDrawerNavigator({
         />
       ),
     },
+
   },
   Contact: {
     screen: Contact,
@@ -114,22 +117,23 @@ const DrawerNav = createDrawerNavigator({
     },
   }
 
-},
-                                        {
+},{
+                                           defaultNavigationOptions: {
+                                           headerTitle: Setting.appName,
+                                           headerLeft: (<Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon} onPress={() => this.navigation.toggleDrawer()}/>
+                                                       ),
+                                           headerStyle: {
+                                             backgroundColor: colors.whiteBlue,
+                                             borderWidth: 1,
+                                             borderColor: colors.darkBlue
+                                           },
+                                           headerTitleStyle: {
+                                             fontWeight: 'bold',
+                                             color: colors.grey,
+                                             flex: 1,
+                                             textAlign: 'right'
+                                           }},
 
-                                          navigationOptions: ({ navigation }) => ({
-                                            headerTitle: Setting.appName,
-                                            headerLeft: (<Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon} onPress={() => this.navigation.toggleDrawer()}/>
-                                                        ),
-                                            title: 'صفحه اصلی',
-                                            drawerIcon: (
-                                              <Icon
-                                                style={styles.drawerIcon}
-                                                name="home"
-
-                                              />
-                                            ),
-                                          }),
                                           contentComponent: SideBar,
                                           drawerPosition: 'right'
                                         }

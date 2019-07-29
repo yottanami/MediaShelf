@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet} from 'react-native';
-import { DrawerItem, DrawerItems } from "react-navigation";
+import { DrawerItem, DrawerItems, NavigationActions, StackActions } from "react-navigation";
 import { Container, Content, Body, Icon, Text } from 'native-base';
 import { styles, colors } from "../Styles/styles";
 import  Setting from "../Configs/settings";
-
 
 export default class SideBar extends Component {
   constructor(props){
     super(props);
   }
+
+  clearStack = (routeToGo) =>  {
+    if (routeToGo == 'Home'){
+      const resetAction = StackActions.reset({
+      index: 0,
+      actions: [
+                NavigationActions.navigate({ routeName: routeToGo})
+      ]
+    });
+      this.props.navigation.dispatch(resetAction);
+    }else{
+      this.props.navigation.navigate(routeToGo);
+    }
+  }
+
 
   render() {
 
@@ -20,6 +34,7 @@ export default class SideBar extends Component {
             <Image
               resizeMode={'contain'}
               source={require('../assets/logo.png')}
+
               style={{
                 width: 150,
               }}
@@ -28,19 +43,19 @@ export default class SideBar extends Component {
           <DrawerItems
             labelStyle={{color: colors.grey}}
             style={{textAlign: 'right'}}
-            {...this.props}>
+            {...this.props }
+            onItemPress={(route) => {
+              this.clearStack(route.route.routeName);
+            }
+                        }
+          >
           </DrawerItems>
 
-
           <View style={styles.drawerBadge}>
-                          <Text>
-
-      رسالت ما در طبیبت،
-
-
-                ارائه خدماتی در راستای سلامت شماست.
-              </Text>
-            </View>
+            <Text>
+              {Setting.appDesc}
+            </Text>
+          </View>
 
 
         </Content>

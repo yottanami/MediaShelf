@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 
+
 import {
   View,
   ActivityIndicator,
@@ -31,6 +32,8 @@ import Setting from "../Configs/settings";
 
 
 export default class Category extends Component {
+
+
     static propTypes = {
         data: PropTypes.object.isRequired,
     };

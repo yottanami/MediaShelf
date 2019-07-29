@@ -9,6 +9,7 @@ import gql from "graphql-tag";
 import Layout from '../Components/Layout';
 import VideoPlayer from '../Components/VideoPlayer';
 import NavigationService from '../Configs/NavigationService';
+import { NavigationActions, StackActions } from "react-navigation";
 const styles = StyleSheet.create({
   container: {
     flex: 1
@@ -27,10 +28,8 @@ query Post($id: ID!) {
 `;
 
 class Post extends Component {
-
   constructor() {
     super();
-    this.onFullScreen = this.onFullScreen.bind(this);
   }
 
 
