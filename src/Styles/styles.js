@@ -30,10 +30,13 @@ export const styles = StyleSheet.create({
     padding: 6,
     justifyContent: 'center'
   },
+  headerLogo:{
+    height: 40,
+  },
   headerMenuIcon:{
     color: colors.grey,
     fontSize: 30,
-    paddingLeft: 20
+    paddingRight: 20
   },
   videoBox: {
     flex: 1,

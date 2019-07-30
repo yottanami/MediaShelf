@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import Categories from './src/Screens/Categories';
 import AuthLoadingScreen from './src/Screens/AuthLoadingScreen';
 import RequestOTP from './src/Screens/RequestOTP';
@@ -29,25 +29,29 @@ const MainStack = createStackNavigator({
   Home: Categories,
   Posts: Posts,
   Post: Post,
+  About: About,
+  Website: Website,
   Contact: Contact,
 },
                                        {
                                          cardStyle: { backgroundColor: '#07263b' },
                                          initialRouteName: 'Home',
+                                           headerLayoutPreset : 'center',
                                          defaultNavigationOptions: {
-                                           headerTitle: Setting.appName,
-                                           headerLeft: (<Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon} onPress={() => this.navigation.toggleDrawer()}/>
-                                                       ),
+                                           headerTintColor: colors.grey,
+                                           headerTitle:  (<Image resizeMode={'contain'} source={require("./src/assets/logo.png")} style={styles.headerLogo} />),
+                                           headerRight: (
+                                               <Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon} onPress={() => this.navigation.toggleDrawer()}/>
+                                                      ),
                                            headerStyle: {
                                              backgroundColor: colors.whiteBlue,
                                              borderWidth: 1,
-                                             borderColor: colors.darkBlue
+                                             borderColor: colors.darkBlue,
                                            },
                                            headerTitleStyle: {
+                                             textAlign: 'center',
                                              fontWeight: 'bold',
                                              color: colors.grey,
-                                             flex: 1,
-                                             textAlign: 'right'
                                            },
                                          }
                                        }, {
@@ -118,27 +122,10 @@ const DrawerNav = createDrawerNavigator({
   }
 
 },{
-                                           defaultNavigationOptions: {
-                                           headerTitle: Setting.appName,
-                                           headerLeft: (<Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon} onPress={() => this.navigation.toggleDrawer()}/>
-                                                       ),
-                                           headerStyle: {
-                                             backgroundColor: colors.whiteBlue,
-                                             borderWidth: 1,
-                                             borderColor: colors.darkBlue
-                                           },
-                                           headerTitleStyle: {
-                                             fontWeight: 'bold',
-                                             color: colors.grey,
-                                             flex: 1,
-                                             textAlign: 'right'
-                                           }},
-
-                                          contentComponent: SideBar,
-                                          drawerPosition: 'right'
-                                        }
+  contentComponent: SideBar,
+  drawerPosition: 'right'
+}
                                        );
-
 export default createAppContainer(createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
