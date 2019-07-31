@@ -118,6 +118,9 @@ export const styles = StyleSheet.create({
     flex: 1
   },
   cardText: {
+    flex: 1,
+    flexDirection: 'row',
+    fontSize: 17,
     color: colors.grey,
     paddingTop: 0,
     paddingBottom: 0,

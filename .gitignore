@@ -57,3 +57,4 @@ buck-out/
 src/Configs/ApiCalls.js
 src/Configs/settings.js
 src/assets/carousel/
+assets
