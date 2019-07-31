@@ -12,18 +12,6 @@ export default class Layout extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    //this.drawer._root.open();
-  }
-
-  closeDrawer = () => {
-    this.drawer._root.close();
-  };
-
-  openDrawer = () => {
-    this.drawer._root.open();
-  };
-
   render(){
 
     return (
@@ -32,8 +20,6 @@ export default class Layout extends Component {
         ref={(ref) => { this.drawer = ref; }}
       //content={<SideBar navigator={this.navigator} />}
         content={<View style={{backgroundColor: "#000", height: 1000}}/>}
-        onClose={this.closeDrawer.bind(this)}
-        onOpen={this.openDrawer.bind(this)}
         acceptPan={true}
         type="displace"
         panOpenMask={0.85}

@@ -44,9 +44,9 @@ id
 
 
 export default class Categories extends Component {
+
   constructor(props) {
     super(props);
-//    this._renderItem = this._renderItem.bind(this);
 
     this.state = {
       carousel_images: [

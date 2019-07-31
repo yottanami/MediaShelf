@@ -6,6 +6,7 @@ import { styles, colors } from "../Styles/styles";
 import  Setting from "../Configs/settings";
 
 export default class SideBar extends Component {
+
   constructor(props){
     super(props);
   }
@@ -26,8 +27,10 @@ export default class SideBar extends Component {
 
 
   render() {
+    const { navigate } = this.props.navigation;
 
     return (
+
       <Container>
         <Content style={styles.drawer}>
           <Body>

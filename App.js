@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, Button} from 'react-native';
 import Categories from './src/Screens/Categories';
 import AuthLoadingScreen from './src/Screens/AuthLoadingScreen';
 import RequestOTP from './src/Screens/RequestOTP';
@@ -15,6 +15,7 @@ import { Icon } from "native-base";
 import { styles, colors } from "./src/Styles/styles";
 import NavigationService from './src/Configs/NavigationService';
 import Setting from './src/Configs/settings';
+import { DrawerActions } from 'react-navigation-drawer';
 
 
 const AuthStack = createStackNavigator({ RequestOTP: RequestOTP, ConfirmOTP: ConfirmOTP },
@@ -35,14 +36,14 @@ const MainStack = createStackNavigator({
 },
                                        {
                                          cardStyle: { backgroundColor: '#07263b' },
+                                         headerLayoutPreset : 'center',
                                          initialRouteName: 'Home',
-                                           headerLayoutPreset : 'center',
-                                         defaultNavigationOptions: {
+                                         defaultNavigationOptions: ({ navigation }) => ({
                                            headerTintColor: colors.grey,
                                            headerTitle:  (<Image resizeMode={'contain'} source={require("./src/assets/logo.png")} style={styles.headerLogo} />),
                                            headerRight: (
-                                               <Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon} onPress={() => this.navigation.toggleDrawer()}/>
-                                                      ),
+                                             <Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon} onPress={() => navigation.toggleDrawer()} />
+                                           ),
                                            headerStyle: {
                                              backgroundColor: colors.whiteBlue,
                                              borderWidth: 1,
@@ -54,11 +55,11 @@ const MainStack = createStackNavigator({
                                              color: colors.grey,
                                            },
                                          }
-                                       }, {
-                                         initialRouteName: 'Home'
-                                       }
-                                      );
 
+                                                                                       )}, {
+                                                                                         initialRouteName: 'Home',
+                                                                                       }
+                                      );
 
 
 const DrawerNav = createDrawerNavigator({
@@ -66,7 +67,7 @@ const DrawerNav = createDrawerNavigator({
   {
     screen: MainStack,
     navigationOptions: ({ navigation }) => ({
-      paths: '/categories',
+      headerTitle: 'teX',
       title: 'صفحه اصلی',
       drawerIcon: (
         <Icon
@@ -123,7 +124,7 @@ const DrawerNav = createDrawerNavigator({
 
 },{
   contentComponent: SideBar,
-  drawerPosition: 'right'
+  drawerPosition: 'right',
 }
                                        );
 export default createAppContainer(createSwitchNavigator(
