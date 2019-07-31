@@ -38,8 +38,12 @@ const MainStack = createStackNavigator({
                                          cardStyle: { backgroundColor: '#07263b' },
                                          headerLayoutPreset : 'center',
                                          initialRouteName: 'Home',
+
                                          defaultNavigationOptions: ({ navigation }) => ({
                                            headerTintColor: colors.grey,
+                                           itemStyle: {
+                                             flexDirection: 'row-reverse'
+                                           },
                                            headerTitle:  (<Image resizeMode={'contain'} source={require("./src/assets/logo.png")} style={styles.headerLogo} />),
                                            headerRight: (
                                              <Icon ios='ios-menu' android="md-menu" style={styles.headerMenuIcon} onPress={() => navigation.toggleDrawer()} />
@@ -56,9 +60,7 @@ const MainStack = createStackNavigator({
                                            },
                                          }
 
-                                                                                       )}, {
-                                                                                         initialRouteName: 'Home',
-                                                                                       }
+                                                                                       )}
                                       );
 
 
@@ -116,7 +118,6 @@ const DrawerNav = createDrawerNavigator({
           style={styles.drawerIcon}
           name="present"
           type="SimpleLineIcons"
-          size={10}
         />
       ),
     },

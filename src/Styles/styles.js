@@ -129,8 +129,9 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.darkBlue,
   },
   drawerContent: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end'
+
   },
   drawerIcon: {
     color: colors.grey,

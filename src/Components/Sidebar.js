@@ -45,7 +45,7 @@ export default class SideBar extends Component {
           </Body>
           <DrawerItems
             labelStyle={{color: colors.grey}}
-            style={{textAlign: 'right'}}
+            itemStyle={{ flexDirection: 'row-reverse'}}
             {...this.props }
             onItemPress={(route) => {
               this.clearStack(route.route.routeName);
