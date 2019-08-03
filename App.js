@@ -69,7 +69,6 @@ const DrawerNav = createDrawerNavigator({
   {
     screen: MainStack,
     navigationOptions: ({ navigation }) => ({
-      headerTitle: 'teX',
       title: 'صفحه اصلی',
       drawerIcon: (
         <Icon
@@ -82,9 +81,7 @@ const DrawerNav = createDrawerNavigator({
   },
   About: {
     screen: About,
-
     navigationOptions: {
-
       title: 'درباره ما',
       drawerIcon: (
         <Icon
@@ -99,7 +96,7 @@ const DrawerNav = createDrawerNavigator({
   Contact: {
     screen: Contact,
     navigationOptions: {
-      title: 'ارتباط با ما',
+      title: 'انتقادات و پیشنهادات',
       drawerIcon: (
         <Icon
           style={styles.drawerIcon}
